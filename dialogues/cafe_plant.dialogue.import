@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c7kfk3o83vc5j"
+path="res://.godot/imported/cafe_plant.dialogue-9ab1f3ff40a3bd3733e5ca99d4c254d7.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_plant.dialogue"
+dest_files=["res://.godot/imported/cafe_plant.dialogue-9ab1f3ff40a3bd3733e5ca99d4c254d7.tres"]
+
+[params]
+
+defaults=true

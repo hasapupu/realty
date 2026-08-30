@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://lhbcqtgxya5o"
+path="res://.godot/imported/cafe_poster.dialogue-e29bea19c74b9f8997b514668db92f38.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_poster.dialogue"
+dest_files=["res://.godot/imported/cafe_poster.dialogue-e29bea19c74b9f8997b514668db92f38.tres"]
+
+[params]
+
+defaults=true

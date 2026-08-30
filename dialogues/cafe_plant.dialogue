@@ -1,0 +1,5 @@
+~ start
+One of the cafe's iconic houseplants.
+Every single day you spend here they look more and more plastic.
+$> CurrScene.has_looked_at_plants = true
+=> END

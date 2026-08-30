@@ -1,0 +1,6 @@
+~ start
+A poster displaying a flower.
+You have no idea why they would put this up, there are only potted plants here.
+if CurrScene.has_looked_at_plants:
+	And those don't even look real.
+=> END

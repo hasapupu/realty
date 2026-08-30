@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cqsxw8gthm26g"
+path="res://.godot/imported/cafe_bookstash.dialogue-416e421a0efa3bce9d0e9a9702c2d6b2.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_bookstash.dialogue"
+dest_files=["res://.godot/imported/cafe_bookstash.dialogue-416e421a0efa3bce9d0e9a9702c2d6b2.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dmbxu3m6lk651"
+path="res://.godot/imported/cafe_energydrink.dialogue-f8257d4de7d592b1ad351634b1b5a889.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_energydrink.dialogue"
+dest_files=["res://.godot/imported/cafe_energydrink.dialogue-f8257d4de7d592b1ad351634b1b5a889.tres"]
+
+[params]
+
+defaults=true

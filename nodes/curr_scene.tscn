@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqjsmlp4mpqg4"]
+
+[ext_resource type="Script" uid="uid://sycquq3d146i" path="res://scripts/cafe_scene.gd" id="1_erp0p"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_erp0p")

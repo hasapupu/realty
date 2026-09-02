@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bx61238eey474"
+path="res://.godot/imported/emily.dialogue-cfb23d14f4293c0e230f23040c520301.tres"
+
+[deps]
+
+source_file="res://dialogues/emily.dialogue"
+dest_files=["res://.godot/imported/emily.dialogue-cfb23d14f4293c0e230f23040c520301.tres"]
+
+[params]
+
+defaults=true

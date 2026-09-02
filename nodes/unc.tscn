@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg5m8m51ewcx5"]
+
+[ext_resource type="Shader" uid="uid://cr3ynrq25xc28" path="res://shaders/recolor.gdshader" id="1_pn61q"]
+[ext_resource type="Texture2D" uid="uid://be52ugbx0k2q4" path="res://sprites/Rando4/Rando4_idle.png" id="2_pn61q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kudjh"]
+shader = ExtResource("1_pn61q")
+shader_parameter/target_colors = PackedColorArray(0.996078, 0.639216, 0.8, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/replace_colors = PackedColorArray(0.901961, 0.666667, 0.529412, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/color_count = 1
+shader_parameter/tolerance = 0.001
+shader_parameter/shader_active = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pn61q"]
+size = Vector2(104, 8)
+
+[node name="Sprite2D" type="Sprite2D"]
+material = SubResource("ShaderMaterial_kudjh")
+position = Vector2(0, 14)
+texture = ExtResource("2_pn61q")
+offset = Vector2(0, -14)
+region_enabled = true
+region_rect = Rect2(24, 83, 21, 29)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_pn61q")

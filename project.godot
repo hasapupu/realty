@@ -75,7 +75,7 @@ ui_down={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/Test.dialogue", "res://dialogues/cafe_energydrink.dialogue", "res://dialogues/cafe_tome.dialogue", "res://dialogues/cafe_bookstash.dialogue", "res://dialogues/cafe_poster.dialogue", "res://dialogues/cafe_plant.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/Test.dialogue", "res://dialogues/cafe_energydrink.dialogue", "res://dialogues/cafe_tome.dialogue", "res://dialogues/cafe_bookstash.dialogue", "res://dialogues/cafe_poster.dialogue", "res://dialogues/cafe_plant.dialogue", "res://dialogues/emily.dialogue")
 
 [rendering]
 

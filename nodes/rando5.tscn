@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://1ma4413ypg4i"]
+
+[ext_resource type="Texture2D" uid="uid://cbl71ntsxbdix" path="res://sprites/Rando8/Rando8_idle.png" id="1_0squx"]
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(0, 16)
+texture = ExtResource("1_0squx")
+offset = Vector2(0, -16)
+region_enabled = true
+region_rect = Rect2(22, 147, 20, 34)

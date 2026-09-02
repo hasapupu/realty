@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dd0svtey74v7y"]
+
+[ext_resource type="Texture2D" uid="uid://boggbjygeram6" path="res://sprites/rando15/rando15_idle.png" id="1_40kyk"]
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(0, 14)
+texture = ExtResource("1_40kyk")
+offset = Vector2(0, -14)
+region_enabled = true
+region_rect = Rect2(24, 83, 17, 29)

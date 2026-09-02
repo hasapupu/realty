@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdqma2n1s3ay1"]
+
+[ext_resource type="Shader" uid="uid://cr3ynrq25xc28" path="res://shaders/recolor.gdshader" id="1_0rmti"]
+[ext_resource type="Texture2D" uid="uid://brj5vu7ge6nk1" path="res://sprites/Emily/Emily_idle.png" id="1_knfk5"]
+[ext_resource type="PackedScene" uid="uid://brg5xh5cv80af" path="res://nodes/intractable.tscn" id="3_f5r88"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f5r88"]
+shader = ExtResource("1_0rmti")
+shader_parameter/target_colors = PackedColorArray(0.996078, 0.639216, 0.8, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/replace_colors = PackedColorArray(0.0784314, 0.0901961, 0.160784, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/color_count = 1
+shader_parameter/tolerance = 0.001
+shader_parameter/shader_active = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5r88"]
+size = Vector2(18, 21)
+
+[node name="Sprite2D" type="Sprite2D"]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_f5r88")
+position = Vector2(0, 14)
+texture = ExtResource("1_knfk5")
+offset = Vector2(0, -14)
+region_enabled = true
+region_rect = Rect2(24, 16, 16, 32)
+
+[node name="Intractable" parent="." instance=ExtResource("3_f5r88")]
+dialogue_path = "res://dialogues/emily.dialogue"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Intractable"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_f5r88")

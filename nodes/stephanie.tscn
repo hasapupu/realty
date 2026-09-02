@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://rp54uxvxbugi"]
+
+[ext_resource type="Texture2D" uid="uid://dnr7sy086vkg7" path="res://sprites/Stephanie/Stephanie_idle.png" id="1_goeqj"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_goeqj")
+region_enabled = true
+region_rect = Rect2(20, 211, 19, 29)

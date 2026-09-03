@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bgsg0at86ectc"
+path="res://.godot/imported/cafe_confusedgirl.dialogue-78e6204e04a1856fae1427ce148a77ee.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_confusedgirl.dialogue"
+dest_files=["res://.godot/imported/cafe_confusedgirl.dialogue-78e6204e04a1856fae1427ce148a77ee.tres"]
+
+[params]
+
+defaults=true

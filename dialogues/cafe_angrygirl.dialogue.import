@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dra7rsrpbxlqh"
+path="res://.godot/imported/cafe_angrygirl.dialogue-291d99443e181d695f4f97dbe927bd74.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_angrygirl.dialogue"
+dest_files=["res://.godot/imported/cafe_angrygirl.dialogue-291d99443e181d695f4f97dbe927bd74.tres"]
+
+[params]
+
+defaults=true

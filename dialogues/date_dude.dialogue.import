@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ckmmkqjt7dxl5"
+path="res://.godot/imported/date_dude.dialogue-ff38d1f54604992cf536e0e4631d6bac.tres"
+
+[deps]
+
+source_file="res://dialogues/date_dude.dialogue"
+dest_files=["res://.godot/imported/date_dude.dialogue-ff38d1f54604992cf536e0e4631d6bac.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bc10gsgl4u8no"
+path="res://.godot/imported/Loverboy.dialogue-ea93a783d0ef10791ffa6f5cd8df55b7.tres"
+
+[deps]
+
+source_file="res://dialogues/Loverboy.dialogue"
+dest_files=["res://.godot/imported/Loverboy.dialogue-ea93a783d0ef10791ffa6f5cd8df55b7.tres"]
+
+[params]
+
+defaults=true

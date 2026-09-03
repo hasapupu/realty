@@ -17,4 +17,4 @@ position = Vector2(0, 19)
 texture = ExtResource("2_h2370")
 offset = Vector2(0, -19)
 region_enabled = true
-region_rect = Rect2(153, 86, 19, 26)
+region_rect = Rect2(151, 21, 19, 27)

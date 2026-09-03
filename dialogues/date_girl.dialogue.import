@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cvphoiar70qst"
+path="res://.godot/imported/date_girl.dialogue-8250ea931f2ee8fa8ed674f6042ccd41.tres"
+
+[deps]
+
+source_file="res://dialogues/date_girl.dialogue"
+dest_files=["res://.godot/imported/date_girl.dialogue-8250ea931f2ee8fa8ed674f6042ccd41.tres"]
+
+[params]
+
+defaults=true

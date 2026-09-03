@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd0svtey74v7y"]
+[gd_scene load_steps=3 format=3 uid="uid://dd0svtey74v7y"]
 
 [ext_resource type="Texture2D" uid="uid://boggbjygeram6" path="res://sprites/rando15/rando15_idle.png" id="1_40kyk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40kyk"]
+size = Vector2(8, 6)
 
 [node name="Sprite2D" type="Sprite2D"]
 position = Vector2(0, 14)
@@ -8,3 +11,9 @@ texture = ExtResource("1_40kyk")
 offset = Vector2(0, -14)
 region_enabled = true
 region_rect = Rect2(24, 83, 17, 29)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_40kyk")

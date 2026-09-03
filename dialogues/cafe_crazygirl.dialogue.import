@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://kik6bwekax3i"
+path="res://.godot/imported/cafe_crazygirl.dialogue-089c0d8d066bcd9fef3ddb3feac8ad0a.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_crazygirl.dialogue"
+dest_files=["res://.godot/imported/cafe_crazygirl.dialogue-089c0d8d066bcd9fef3ddb3feac8ad0a.tres"]
+
+[params]
+
+defaults=true

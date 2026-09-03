@@ -14,8 +14,8 @@ shader_parameter/shader_active = true
 [node name="Sprite2D" type="Sprite2D"]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_s66nw")
-position = Vector2(0, 15)
+position = Vector2(0, 10)
 texture = ExtResource("2_j5e7k")
-offset = Vector2(0, -15)
+offset = Vector2(0, -10)
 region_enabled = true
-region_rect = Rect2(153, 214, 14, 26)
+region_rect = Rect2(152, 150, 16, 26)

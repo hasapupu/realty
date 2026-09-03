@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://byek2yu1p612m"
+path="res://.godot/imported/cafe_girl.dialogue-a29b2cc180a9c773028eeab968899f7f.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_girl.dialogue"
+dest_files=["res://.godot/imported/cafe_girl.dialogue-a29b2cc180a9c773028eeab968899f7f.tres"]
+
+[params]
+
+defaults=true

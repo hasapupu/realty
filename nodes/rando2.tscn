@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://grvh6s2jfagy"]
+[gd_scene load_steps=4 format=3 uid="uid://grvh6s2jfagy"]
 
+[ext_resource type="Shader" uid="uid://cr3ynrq25xc28" path="res://shaders/recolor.gdshader" id="1_im71c"]
 [ext_resource type="Texture2D" uid="uid://rsadq0d6eac8" path="res://sprites/Rando2/Rando2_idle.png" id="1_qms11"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_180ou"]
+shader = ExtResource("1_im71c")
+shader_parameter/target_colors = PackedColorArray(0.85098, 0.341176, 0.533333, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/replace_colors = PackedColorArray(0.478431, 0.305882, 0.152941, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/color_count = 1
+shader_parameter/tolerance = 0.001
+shader_parameter/shader_active = true
+
 [node name="Sprite2D" type="Sprite2D"]
+material = SubResource("ShaderMaterial_180ou")
 position = Vector2(-1, 14)
 texture = ExtResource("1_qms11")
 offset = Vector2(1, -14)

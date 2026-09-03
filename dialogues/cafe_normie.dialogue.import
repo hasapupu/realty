@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dxdhiw13pao67"
+path="res://.godot/imported/cafe_normie.dialogue-c398cff46290d8c02f80bf2013259d84.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_normie.dialogue"
+dest_files=["res://.godot/imported/cafe_normie.dialogue-c398cff46290d8c02f80bf2013259d84.tres"]
+
+[params]
+
+defaults=true

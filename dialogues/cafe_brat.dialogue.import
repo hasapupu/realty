@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ba0lg4huo20et"
+path="res://.godot/imported/cafe_brat.dialogue-a26d231326b4425bd7482358c21e4a8e.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_brat.dialogue"
+dest_files=["res://.godot/imported/cafe_brat.dialogue-a26d231326b4425bd7482358c21e4a8e.tres"]
+
+[params]
+
+defaults=true

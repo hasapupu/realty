@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dyn77jiaisd4"
+path="res://.godot/imported/cafe_heroine.dialogue-4b7e9202a1667bda0939a57a3b529387.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_heroine.dialogue"
+dest_files=["res://.godot/imported/cafe_heroine.dialogue-4b7e9202a1667bda0939a57a3b529387.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ml7s640qx1rt"
+path="res://.godot/imported/cafe_scissorboy.dialogue-c9df902ecb7c26d40f1ef20bc5bfc425.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_scissorboy.dialogue"
+dest_files=["res://.godot/imported/cafe_scissorboy.dialogue-c9df902ecb7c26d40f1ef20bc5bfc425.tres"]
+
+[params]
+
+defaults=true

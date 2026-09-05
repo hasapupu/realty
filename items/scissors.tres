@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://b1p53e0rqlx08"]
+
+[ext_resource type="Script" uid="uid://7goi6fgdi5q7" path="res://scripts/item.gd" id="1_glr6w"]
+
+[resource]
+script = ExtResource("1_glr6w")
+name = "Scissors"
+heal_amount = 0
+item_use_text_path = "res://dialogues/default_item.dialogue"
+metadata/_custom_type_script = "uid://7goi6fgdi5q7"

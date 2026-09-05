@@ -3,4 +3,11 @@ A poster displaying a flower.
 You have no idea why they would put this up, there are only potted plants here.
 if CurrScene.has_looked_at_plants:
 	And those don't even look real.
+if CurrScene.has_received_scissors:
+	Will you use the scissors?
+	- Use
+		You took down the poster, and cut out the flower with the scissors.
+		$> CurrScene.has_received_cutout = true
+		do add_item("res://items/scissors.tres")
+	-Don't
 => END

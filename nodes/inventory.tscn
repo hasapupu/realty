@@ -1,0 +1,99 @@
+[gd_scene load_steps=12 format=3 uid="uid://5f87aiwrp2m3"]
+
+[ext_resource type="Texture2D" uid="uid://d3kejw05ma385" path="res://sprites/CozyUi.png" id="1_i02ac"]
+[ext_resource type="FontFile" uid="uid://ccd8hxfb26ry2" path="res://fonts/fibberish.ttf" id="2_7pofv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pofv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_60lq6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5lj5n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jgs4p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yxmeu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ux18x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2xna"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_luxqg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8higg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -120.0
+offset_right = 120.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 9
+texture = ExtResource("1_i02ac")
+region_rect = Rect2(261, 544, 87, 81)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 5.0
+offset_right = 159.0
+offset_bottom = 28.0
+theme_override_fonts/normal_font = ExtResource("2_7pofv")
+theme_override_font_sizes/normal_font_size = 16
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 39.0
+offset_right = 223.0
+offset_bottom = 216.0
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_7pofv")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7pofv")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_60lq6")
+theme_override_styles/hovered = SubResource("StyleBoxEmpty_5lj5n")
+theme_override_styles/hovered_selected = SubResource("StyleBoxEmpty_jgs4p")
+theme_override_styles/hovered_selected_focus = SubResource("StyleBoxEmpty_yxmeu")
+theme_override_styles/selected = SubResource("StyleBoxEmpty_ux18x")
+theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_c2xna")
+theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_luxqg")
+theme_override_styles/cursor = SubResource("StyleBoxEmpty_8higg")
+allow_reselect = true
+allow_search = false
+max_columns = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 5
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+color = Color(0, 0, 0, 0.419608)
+metadata/_edit_use_anchors_ = true

@@ -1,3 +1,14 @@
 ~ start
-Reckless kid: I LOVE running around with scissors!!!
+if CurrScene.has_received_scissors == false:
+	Reckless kid: I LOVE playing with scissors!!!
+	This seems dangerous. Will you take away the scissors?
+	- Be responsible 
+		You took away the scissors.
+		Defused kid: Aw man.
+		$> CurrScene.has_received_scissors = true
+		do add_item("res://items/scissors.tres")
+	- Endanger child
+		The recklessnes continues.
+else:
+	Defused kid: Everything is boring now.
 => END

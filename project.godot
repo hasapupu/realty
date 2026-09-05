@@ -72,10 +72,15 @@ ui_down={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
 ]
 }
+inventory={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":69,"key_label":0,"unicode":101,"location":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogues/Test.dialogue", "res://dialogues/cafe_energydrink.dialogue", "res://dialogues/cafe_tome.dialogue", "res://dialogues/cafe_bookstash.dialogue", "res://dialogues/cafe_poster.dialogue", "res://dialogues/cafe_plant.dialogue", "res://dialogues/emily.dialogue", "res://dialogues/Loverboy.dialogue", "res://dialogues/cafe_girl.dialogue", "res://dialogues/cafe_door.dialogue", "res://dialogues/cafe_scissorboy.dialogue", "res://dialogues/cafe_brat.dialogue", "res://dialogues/cafe_heroine.dialogue", "res://dialogues/date_dude.dialogue", "res://dialogues/date_girl.dialogue", "res://dialogues/cafe_angrygirl.dialogue", "res://dialogues/cafe_confusedgirl.dialogue", "res://dialogues/cafe_crazygirl.dialogue", "res://dialogues/cafe_normie.dialogue", "res://dialogues/cafe_arguement.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogues/cafe_angrygirl.dialogue", "res://dialogues/cafe_arguement.dialogue", "res://dialogues/cafe_bookstash.dialogue", "res://dialogues/cafe_brat.dialogue", "res://dialogues/cafe_confusedgirl.dialogue", "res://dialogues/cafe_crazygirl.dialogue", "res://dialogues/cafe_door.dialogue", "res://dialogues/cafe_energydrink.dialogue", "res://dialogues/cafe_girl.dialogue", "res://dialogues/cafe_heroine.dialogue", "res://dialogues/cafe_normie.dialogue", "res://dialogues/cafe_plant.dialogue", "res://dialogues/cafe_poster.dialogue", "res://dialogues/cafe_scissorboy.dialogue", "res://dialogues/cafe_tome.dialogue", "res://dialogues/date_dude.dialogue", "res://dialogues/date_girl.dialogue", "res://dialogues/emily.dialogue", "res://dialogues/Loverboy.dialogue", "res://dialogues/Test.dialogue", "res://dialogues/default_item.dialogue")
 
 [rendering]
 

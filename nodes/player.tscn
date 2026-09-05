@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://ciryltqrh061j"]
+[gd_scene load_steps=16 format=3 uid="uid://ciryltqrh061j"]
 
 [ext_resource type="Script" uid="uid://byldqhcmtriq5" path="res://scripts/player.gd" id="1_u63mc"]
 [ext_resource type="Texture2D" uid="uid://xamcedu8ltrw" path="res://sprites/My_Character_001_idle.png" id="2_bms3g"]
 [ext_resource type="Texture2D" uid="uid://bfiontsoda1r7" path="res://sprites/My_Character_001_walk.png" id="3_me0cc"]
+[ext_resource type="PackedScene" uid="uid://5f87aiwrp2m3" path="res://nodes/inventory.tscn" id="4_hqdnm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u63mc"]
 size = Vector2(16, 8)
@@ -294,6 +295,16 @@ shape = SubResource("RectangleShape2D_u63mc")
 position = Vector2(0, -39)
 position_smoothing_enabled = true
 
+[node name="Control" parent="Camera2D" instance=ExtResource("4_hqdnm")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+grow_vertical = 1
+
+[node name="ColorRect" parent="Camera2D/Control" index="1"]
+color = Color(0, 0, 0, 0.568627)
+
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 15)
 collision_mask = 2
@@ -306,3 +317,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_hqdnm")
 }
 autoplay = "idle"
+
+[connection signal="item_activated" from="Camera2D/Control/NinePatchRect/ItemList" to="." method="_on_item_list_item_activated"]
+
+[editable path="Camera2D/Control"]

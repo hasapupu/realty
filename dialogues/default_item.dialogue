@@ -1,0 +1,4 @@
+~ start
+You used {{curr_item.name}}...
+Nothing happened.
+=> END

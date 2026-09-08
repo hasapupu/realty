@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx0agajni2jdc"
-path="res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
+uid="uid://nbrh342lbpby"
+path="res://.godot/imported/icon.svg-eae996b9c8f95a4876959090ef4cea41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.svg"
-dest_files=["res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"]
+source_file="res://addons/rhythm_notifier-6a45663809d9d6e8bfeaad0000fd19344d2dfbfe/addons/rhythm_notifier/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-eae996b9c8f95a4876959090ef4cea41.ctex"]
 
 [params]
 

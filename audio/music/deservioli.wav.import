@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://ddcpmtmvjtoy2"
-path="res://.godot/imported/danger.wav-f3f9971568b851525481f2cd14cb5344.sample"
+uid="uid://bem4484uvdiao"
+path="res://.godot/imported/deservioli.wav-cdea48031729c33087e6c877ff354aaf.sample"
 
 [deps]
 
-source_file="res://audio/music/danger.wav"
-dest_files=["res://.godot/imported/danger.wav-f3f9971568b851525481f2cd14cb5344.sample"]
+source_file="res://audio/music/deservioli.wav"
+dest_files=["res://.godot/imported/deservioli.wav-cdea48031729c33087e6c877ff354aaf.sample"]
 
 [params]
 

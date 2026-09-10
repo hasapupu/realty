@@ -1762,7 +1762,8 @@ sources/3 = SubResource("TileSetAtlasSource_y2wr3")
 [sub_resource type="Resource" id="Resource_rgait"]
 script = ExtResource("22_cs2r0")
 instance_path = "res://nodes/cafe_backroom.tscn"
-player_spawn = Vector2(8, -60)
+player_spawn = Vector2(8, -70)
+room_music = &"res://audio/music/backroom.wav"
 metadata/_custom_type_script = "uid://bfetnocwpi4i3"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gerx"]
@@ -2008,10 +2009,10 @@ tile_set = SubResource("TileSet_sybi7")
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
 z_index = -10
-offset_left = -350.0
-offset_top = -195.0
-offset_right = 625.0
-offset_bottom = 365.0
+offset_left = -875.0
+offset_top = -388.0
+offset_right = 864.0
+offset_bottom = 590.0
 color = Color(0, 0, 0, 1)
 
 [node name="Exits" type="Node2D" parent="."]

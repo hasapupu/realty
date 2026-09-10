@@ -279,9 +279,10 @@ texture = ExtResource("1_xja0e")
 16:10/0 = 0
 17:10/0 = 0
 18:10/0 = 0
-18:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-13.1435, -8.60303, 12.5063, -9.08098, 12.3469, 6.53193, -13.6215, 7.00988)
+18:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 19:10/0 = 0
 19:10/0/texture_origin = Vector2i(0, 2)
+19:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8.2735, -10.0721, 8.09364, -10.4318, 8, 8, -8, 8)
 20:10/size_in_atlas = Vector2i(2, 1)
 20:10/0 = 0
 20:10/0/texture_origin = Vector2i(0, 2)
@@ -382,6 +383,7 @@ sources/0 = SubResource("TileSetAtlasSource_wp1d7")
 script = ExtResource("3_gix6j")
 instance_path = "res://nodes/cafe.tscn"
 player_spawn = Vector2(15, 170)
+room_music = &"res://audio/music/coffeeshop.wav"
 metadata/_custom_type_script = "uid://bfetnocwpi4i3"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp1d7"]

@@ -50,12 +50,12 @@ region_rect = Rect2(261, 544, 87, 81)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect"]
 layout_mode = 0
-offset_left = 81.0
-offset_top = 5.0
-offset_right = 159.0
-offset_bottom = 28.0
+offset_left = 68.0
+offset_top = 4.0
+offset_right = 170.0
+offset_bottom = 27.0
 theme_override_fonts/normal_font = ExtResource("2_7pofv")
-theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/normal_font_size = 24
 text = "Inventory"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -69,7 +69,7 @@ offset_bottom = 216.0
 mouse_filter = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_7pofv")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7pofv")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_60lq6")
 theme_override_styles/hovered = SubResource("StyleBoxEmpty_5lj5n")
@@ -81,7 +81,7 @@ theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_luxqg")
 theme_override_styles/cursor = SubResource("StyleBoxEmpty_8higg")
 allow_reselect = true
 allow_search = false
-max_columns = 4
+max_columns = 3
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = 5

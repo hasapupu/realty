@@ -9,6 +9,7 @@ var idle_dir : String = "idle"
 @export var inventory := []
 @onready var inventory_node: Control = $Camera2D/Control
 @onready var curr_item:Item
+@onready var camera:Camera2D = $Camera2D
 var hp:int:
 	set(value):
 		if value > max_hp:
@@ -22,8 +23,7 @@ signal died
 
 func _ready() -> void:
 	inventory_node.visible = false
-	SoundManager.play_music(load("res://audio/music/coffeeshop.wav"),1,"music")
-	SoundManager.set_music_volume(.4)
+
 
 func _process(delta: float) -> void:
 	inventory_node.set_process(inventory_node.visible)

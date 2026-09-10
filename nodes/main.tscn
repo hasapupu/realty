@@ -1,11 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdji77d84p6q6"]
+[gd_scene load_steps=4 format=3 uid="uid://cdji77d84p6q6"]
 
+[ext_resource type="Script" uid="uid://dpb0dj2qugb57" path="res://scripts/main.gd" id="1_a3ry3"]
 [ext_resource type="PackedScene" uid="uid://ygrx4347wq1c" path="res://nodes/cafe.tscn" id="1_xpfdc"]
+[ext_resource type="PackedScene" uid="uid://ciryltqrh061j" path="res://nodes/player.tscn" id="3_ufc4x"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_a3ry3")
 
 [node name="CurrentMap" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Node2D" parent="CurrentMap" instance=ExtResource("1_xpfdc")]
 rotation = -0.000486145
+
+[node name="CharacterBody2D" parent="CurrentMap/Node2D/YSort" index="16" instance=ExtResource("3_ufc4x")]
+position = Vector2(184, 169)
+
+[node name="Exit" parent="CurrentMap/Node2D/Exits" index="0"]
+position = Vector2(14.913, 179.007)
+
+[connection signal="player_entered" from="CurrentMap/Node2D/Exits/Exit" to="." method="load_overworld_room"]
+
+[editable path="CurrentMap/Node2D"]
+[editable path="CurrentMap/Node2D/YSort/Sprite2D"]
+[editable path="CurrentMap/Node2D/YSort/Sprite2D5"]
+[editable path="CurrentMap/Node2D/NPCs/Intractable"]
+[editable path="CurrentMap/Node2D/NPCs/Intractable2"]
+[editable path="CurrentMap/Node2D/NPCs/Intractable2/Intractable2"]

@@ -1,19 +1,152 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd0svtey74v7y"]
+[gd_scene load_steps=10 format=3 uid="uid://dd0svtey74v7y"]
 
-[ext_resource type="Texture2D" uid="uid://boggbjygeram6" path="res://sprites/rando15/rando15_idle.png" id="1_40kyk"]
+[ext_resource type="Script" uid="uid://dml3g4oflhhio" path="res://Scripts/rando_8.gd" id="2_i4bhd"]
+[ext_resource type="Texture2D" uid="uid://cyt2bjembtfs7" path="res://sprites/rando15/rando15_rotate.png" id="2_shslx"]
+[ext_resource type="Texture2D" uid="uid://bav26t0bybtpb" path="res://sprites/rando15/rando15_walk.png" id="3_shslx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40kyk"]
-size = Vector2(8, 6)
+size = Vector2(5, 4)
 
-[node name="Sprite2D" type="Sprite2D"]
+[sub_resource type="Animation" id="Animation_i4bhd"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(23, 83, 17, 29)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_shslx")]
+}
+
+[sub_resource type="Animation" id="Animation_shslx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(23, 83, 17, 29)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_shslx")]
+}
+
+[sub_resource type="Animation" id="Animation_s8m3b"]
+resource_name = "walk_right"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(23, 83, 17, 29), Rect2(88, 82, 17, 30), Rect2(151, 83, 17, 29), Rect2(216, 82, 17, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_shslx")]
+}
+
+[sub_resource type="Animation" id="Animation_hqoa3"]
+resource_name = "look_up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_shslx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(23, 147, 18, 29)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cfqcv"]
+_data = {
+&"RESET": SubResource("Animation_shslx"),
+&"idle": SubResource("Animation_i4bhd"),
+&"look_up": SubResource("Animation_hqoa3"),
+&"walk_right": SubResource("Animation_s8m3b")
+}
+
+[node name="Sprite2D" type="CharacterBody2D"]
 position = Vector2(0, 14)
-texture = ExtResource("1_40kyk")
-offset = Vector2(0, -14)
+script = ExtResource("2_i4bhd")
+nav_speed = 100
+
+[node name="StaticBody2D" type="Sprite2D" parent="."]
+position = Vector2(0, -14)
+texture = ExtResource("2_shslx")
 region_enabled = true
-region_rect = Rect2(24, 83, 17, 29)
+region_rect = Rect2(23, 83, 17, 29)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+navigation_layers = 2
+avoidance_enabled = true
+avoidance_layers = 2
+avoidance_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, -2)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
 shape = SubResource("RectangleShape2D_40kyk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cfqcv")
+}

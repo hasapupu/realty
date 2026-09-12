@@ -1,0 +1,5 @@
+~ start
+Emily: Come on man, you know the backroom is for employees only.
+do wait(0)
+do move_player(16,142)
+=> END

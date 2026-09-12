@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c6hxeb8lofhr6"
+path="res://.godot/imported/cafe_obstacle.dialogue-337aa29ef951d5a97192bf7ff0ea53fb.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_obstacle.dialogue"
+dest_files=["res://.godot/imported/cafe_obstacle.dialogue-337aa29ef951d5a97192bf7ff0ea53fb.tres"]
+
+[params]
+
+defaults=true

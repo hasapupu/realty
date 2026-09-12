@@ -1,0 +1,1 @@
+class_name SceneContext extends Node2D

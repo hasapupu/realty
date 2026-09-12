@@ -11,4 +11,5 @@ else:
 	Loverboy: Lady of my (day)dream(s), here I come!!!!
 	do remove_item("Scissors")
 	do remove_item("Cutout")
+	do move_lover(215,84)
 => END

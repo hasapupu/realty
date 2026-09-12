@@ -296,6 +296,7 @@ position = Vector2(0, -39)
 position_smoothing_enabled = true
 
 [node name="Control" parent="Camera2D" instance=ExtResource("4_hqdnm")]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -317,6 +318,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_hqdnm")
 }
 autoplay = "idle"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 6.0
+target_desired_distance = 6.0
+path_postprocessing = 1
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 8.0
+avoidance_layers = 2
 
 [connection signal="item_activated" from="Camera2D/Control/NinePatchRect/ItemList" to="." method="_on_item_list_item_activated"]
 

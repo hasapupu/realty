@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://ygrx4347wq1c"]
+[gd_scene load_steps=61 format=4 uid="uid://ygrx4347wq1c"]
 
 [ext_resource type="Script" uid="uid://bsphwdskiix6s" path="res://scripts/cafe.gd" id="1_cs2r0"]
 [ext_resource type="Texture2D" uid="uid://ju4xkdkcdqd1" path="res://sprites/Bedroom Asset Pack 001.png" id="1_qaqna"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://coi8acxkdap1y" path="res://nodes/rando9.tscn" id="18_g0bcl"]
 [ext_resource type="Script" uid="uid://kk4o8o7n7foi" path="res://scripts/interactable.gd" id="19_m2axw"]
 [ext_resource type="PackedScene" uid="uid://5easq2avroag" path="res://nodes/exit.tscn" id="21_kkpbd"]
+[ext_resource type="PackedScene" uid="uid://tnbsavwou10i" path="res://nodes/loveparticles.tscn" id="21_rgait"]
 [ext_resource type="Script" uid="uid://bfetnocwpi4i3" path="res://scripts/overworld_room.gd" id="22_cs2r0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3ry3"]
@@ -2095,15 +2096,20 @@ tile_set = SubResource("TileSet_sybi7")
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
 z_index = -10
-offset_left = -875.0
-offset_top = -384.0
-offset_right = 864.0
-offset_bottom = 594.0
+offset_left = -871.0
+offset_top = -407.0
+offset_right = 868.0
+offset_bottom = 571.0
 color = Color(0, 0, 0, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Background"]
 navigation_polygon = SubResource("NavigationPolygon_gpfdi")
 navigation_layers = 2
+
+[node name="CPUParticles2D" parent="Background" instance=ExtResource("21_rgait")]
+visible = false
+position = Vector2(216, 43)
+speed_scale = 2.0
 
 [node name="Exits" type="Node2D" parent="."]
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dh566yra6brmh"
+path="res://.godot/imported/cafe_confession.dialogue-464f9ad9b54de39057760ebdeab26b2a.tres"
+
+[deps]
+
+source_file="res://dialogues/cafe_confession.dialogue"
+dest_files=["res://.godot/imported/cafe_confession.dialogue-464f9ad9b54de39057760ebdeab26b2a.tres"]
+
+[params]
+
+defaults=true

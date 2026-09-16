@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="RoomSave" load_steps=2 format=3 uid="uid://bbiimf2pn431b"]
+
+[ext_resource type="Script" uid="uid://yykj3silenli" path="res://scripts/room_save.gd" id="1_fghqj"]
+
+[resource]
+script = ExtResource("1_fghqj")
+flags = {}
+metadata/_custom_type_script = "uid://yykj3silenli"

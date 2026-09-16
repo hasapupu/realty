@@ -1,7 +1,8 @@
-[gd_scene load_steps=61 format=4 uid="uid://ygrx4347wq1c"]
+[gd_scene load_steps=62 format=4 uid="uid://ygrx4347wq1c"]
 
 [ext_resource type="Script" uid="uid://bsphwdskiix6s" path="res://scripts/cafe.gd" id="1_cs2r0"]
 [ext_resource type="Texture2D" uid="uid://ju4xkdkcdqd1" path="res://sprites/Bedroom Asset Pack 001.png" id="1_qaqna"]
+[ext_resource type="Resource" uid="uid://bbiimf2pn431b" path="res://room_resources/cafe.tres" id="2_fqsvn"]
 [ext_resource type="Texture2D" uid="uid://cvmlqd1u3uag1" path="res://sprites/tiles and items.png" id="2_yd8lu"]
 [ext_resource type="PackedScene" uid="uid://brg5xh5cv80af" path="res://nodes/intractable.tscn" id="4_6vgot"]
 [ext_resource type="PackedScene" uid="uid://bdqma2n1s3ay1" path="res://nodes/emily.tscn" id="4_ogyys"]
@@ -1848,6 +1849,8 @@ size = Vector2(32, 15)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_cs2r0")
+local_save = ExtResource("2_fqsvn")
+save_name = "cafe"
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true

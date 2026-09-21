@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdlvtt1qdrwry"]
+
+[ext_resource type="Script" uid="uid://vaawwo8pvqth" path="res://scripts/echidna.gd" id="1_k406k"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k406k"]
+size = Vector2(64, 64)
+
+[node name="Echidna" type="Control"]
+physics_interpolation_mode = 0
+layout_mode = 3
+anchor_left = 0.099
+anchor_top = 0.131
+anchor_right = 0.099
+anchor_bottom = 0.131
+offset_left = -31.68
+offset_top = -31.44
+offset_right = -31.68
+offset_bottom = -31.44
+script = ExtResource("1_k406k")
+enemy_name = "Test Enemy"
+enemy_music_path = "res://audio/music/deservioli.wav"
+music_bpm = 196
+metadata/_custom_type_script = "uid://vaawwo8pvqth"
+
+[node name="Sprite2D" type="TextureRect" parent="."]
+layout_mode = 0
+texture = SubResource("PlaceholderTexture2D_k406k")

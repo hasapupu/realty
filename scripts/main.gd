@@ -7,6 +7,7 @@ var curr_room: SceneContext
 @onready var cr_node = get_node("CurrentMap")
 @onready var def_mus_path: String = "res://audio/music/coffeeshop.wav"
 var save_path := "user://everything.tres"
+const battle_scene_path := "res://nodes/battle_scene.tscn"
 
 func _ready():
 	if ResourceLoader.exists(save_path) == false:
@@ -27,6 +28,7 @@ func _ready():
 	player.position = savefile.player_pos
 	SoundManager.play_music(load(def_mus_path),1,"music")
 	SoundManager.set_music_volume(.4)
+	initiate_battle_sequence(load("res://nodes/testenemy.tscn").instantiate())
 
 func load_overworld_room(new_room:OWRoom):
 	#player.camera.position_smoothing_enabled = false
@@ -51,3 +53,14 @@ func load_overworld_room(new_room:OWRoom):
 	player.camera.global_position = player.global_position
 	player.camera.reset_smoothing()
 	#player.camera.position_smoothing_enabled = true
+	
+func initiate_battle_sequence(enemy:Echidna):
+	cr_node.process_mode = Node.PROCESS_MODE_DISABLED
+	var bs_inst: BattleSequence = load(battle_scene_path).instantiate()
+	bs_inst.enemy = enemy
+	bs_inst.inventory = player.inventory
+	bs_inst.global_position = player.camera.global_position
+	add_child(bs_inst)
+
+func stop_battle_sequence():
+	cr_node.process_mode = Node.PROCESS_MODE_ALWAYS

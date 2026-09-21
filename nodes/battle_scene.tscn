@@ -1,0 +1,162 @@
+[gd_scene load_steps=8 format=3 uid="uid://de6pth4lhbrx3"]
+
+[ext_resource type="Script" uid="uid://1ipdc2rptlx8" path="res://scripts/battle_scene.gd" id="1_3431j"]
+[ext_resource type="Texture2D" uid="uid://li4wknkj6rty" path="res://sprites/BlackandWhiteUI.png" id="1_pgqjp"]
+[ext_resource type="FontFile" uid="uid://ccd8hxfb26ry2" path="res://fonts/fibberish.ttf" id="3_i5xfp"]
+[ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier-6a45663809d9d6e8bfeaad0000fd19344d2dfbfe/addons/rhythm_notifier/rhythm_notifier.gd" id="4_elstw"]
+[ext_resource type="Shader" uid="uid://brkktr48cptd5" path="res://scripts/invert.gdshader" id="5_ncinl"]
+
+[sub_resource type="Theme" id="Theme_elstw"]
+default_font = ExtResource("3_i5xfp")
+default_font_size = 13
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pvnho"]
+shader = ExtResource("5_ncinl")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+mouse_default_cursor_shape = 8
+script = ExtResource("1_3431j")
+
+[node name="EnemyPos" type="Control" parent="."]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -49.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+z_index = 5
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = 44.0
+offset_right = 138.0
+offset_bottom = 113.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(69, 26)
+texture = ExtResource("1_pgqjp")
+region_rect = Rect2(6, 80, 85, 112)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+
+[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 8.0
+offset_right = 270.0
+offset_bottom = 62.0
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect/CenterContainer"]
+layout_mode = 2
+theme = SubResource("Theme_elstw")
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 8
+columns = 4
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -224.0
+offset_top = -128.0
+offset_right = 252.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RhythmNotifier" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("4_elstw")
+bpm = 178.0
+beat_length = 0.337079
+audio_stream_player = NodePath("../AudioStreamPlayer")
+metadata/_custom_type_script = "uid://dos3qhffr4v0a"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"music"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 20
+material = SubResource("ShaderMaterial_pvnho")
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect3" type="ColorRect" parent="Control"]
+z_index = 10
+layout_mode = 0
+offset_left = 23.0
+offset_top = 162.0
+offset_right = 296.0
+offset_bottom = 164.0
+color = Color(0.262932, 0.262932, 0.262932, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Control"]
+z_index = 10
+layout_mode = 0
+offset_left = 23.0
+offset_top = 162.0
+offset_right = 53.0
+offset_bottom = 164.0
+color = Color(0.707967, 0.707967, 0.707967, 1)
+
+[node name="Label" type="Label" parent="Control"]
+z_index = 10
+layout_mode = 0
+offset_left = 25.0
+offset_top = 158.0
+offset_right = 65.0
+offset_bottom = 181.0
+rotation = 1.57839
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_i5xfp")
+theme_override_font_sizes/font_size = 8
+text = ">"

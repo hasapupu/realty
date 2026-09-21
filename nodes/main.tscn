@@ -6,4 +6,5 @@
 script = ExtResource("1_a3ry3")
 
 [node name="CurrentMap" type="Node2D" parent="."]
+process_mode = 1
 y_sort_enabled = true

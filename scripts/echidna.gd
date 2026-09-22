@@ -8,3 +8,12 @@ class_name Echidna extends Control
 @export var music_bpm := 120
 @export var input_rate := 4.0
 @export var difficulty = 35
+@export var player_acts := ["Test Act"]
+@export var p_act_dict := {"test act": test}
+var bs:BattleSequence
+signal spared
+signal died
+
+func test():
+	print("test")
+	bs.switch_panel(["Fight","Skill","Item","Block"])

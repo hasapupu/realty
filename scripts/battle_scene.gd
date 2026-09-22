@@ -5,7 +5,7 @@ var enemy : Echidna
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 @onready var player_menu : Control = $NinePatchRect/CenterContainer/GridContainer
 @onready var but_path := "res://nodes/menuoption.tscn"
-var def_responses:= {"fight":fight,"skill":null,"item":show_inventory,"block":block,"test item":test_item}
+var def_responses:= {"fight":fight,"skill":show_skills,"item":show_inventory,"block":block,"test item":test_item}
 var but_list:Array
 var selected_i := 0
 var inventory : Array
@@ -23,9 +23,19 @@ var input_rate:float = 4.0#in beats
 @onready var succes_zone:ColorRect = $Control/ColorRect4
 var player_attacking := false
 var player_blocking := false
-var player_hp:int
+var player_max_hp:int
+var player_hp:int:
+	set(value):
+		if value > player_max_hp:
+			player_hp = player_max_hp
+		elif value<0:
+			player_died.emit()
+		else:
+			player_hp = value
+signal player_died
 
 func _ready():
+	enemy.bs = self
 	$EnemyPos.add_child(enemy)
 	audio.stream = load(enemy.enemy_music_path)
 	rhythm_notifier.bpm = enemy.music_bpm
@@ -92,6 +102,9 @@ func _process(delta):
 				if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
 					if def_responses.has(but_list[selected_i].get_text().to_lower()):
 						(def_responses[but_list[selected_i].get_text().to_lower()] as Callable).call()
+					elif enemy.p_act_dict.has(but_list[selected_i].get_text().to_lower()):
+						print("process")
+						(enemy.p_act_dict[but_list[selected_i].get_text().to_lower()] as Callable).call()
 						
 			else:
 				player_attacking = false
@@ -122,6 +135,9 @@ func show_inventory():
 	for i:Item in inventory:
 		names.append(i.name.to_lower())
 	switch_panel(names)
+	
+func show_skills():
+	switch_panel(enemy.player_acts)
 	
 func test_item():
 	player_hp += 10

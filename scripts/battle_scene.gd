@@ -5,7 +5,7 @@ var enemy : Echidna
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 @onready var player_menu : Control = $NinePatchRect/CenterContainer/GridContainer
 @onready var but_path := "res://nodes/menuoption.tscn"
-var def_responses:= {"fight":null,"skill":null,"item":null,"block":null}
+var def_responses:= {"fight":fight,"skill":null,"item":show_inventory,"block":block,"test item":test_item}
 var but_list:Array
 var selected_i := 0
 var inventory : Array
@@ -21,6 +21,9 @@ var c_active := false:
 var c_tween:Tween #c_ stands for cursor always in this script atleast
 var input_rate:float = 4.0#in beats
 @onready var succes_zone:ColorRect = $Control/ColorRect4
+var player_attacking := false
+var player_blocking := false
+var player_hp:int
 
 func _ready():
 	$EnemyPos.add_child(enemy)
@@ -31,6 +34,7 @@ func _ready():
 	input_rate = enemy.input_rate
 	difficulty = enemy.difficulty
 	succes_zone.size.x = difficulty
+	def_responses[enemy.enemy_name.to_lower()] = attack
 	audio.play()
 	
 
@@ -82,3 +86,47 @@ func _process(delta):
 			if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
 				switch_selection(selected_i + 1)
 			#print(cursor.position.distance_to(cursor_final_pos))
+		elif Input.is_action_just_pressed("ui_accept"):
+			c_active = false
+			if !player_attacking:
+				if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
+					if def_responses.has(but_list[selected_i].get_text().to_lower()):
+						(def_responses[but_list[selected_i].get_text().to_lower()] as Callable).call()
+						
+			else:
+				player_attacking = false
+				enemy.hp -= 170 - (cursor.position.distance_to(cursor_final_pos))
+				switch_panel(["Fight","Skill","Item","Block"])
+
+func fight():
+	switch_panel([enemy.enemy_name])
+	
+func attack():
+	print("a")
+	(but_list[selected_i] as BattleButt).set_selected(false)
+	player_attacking = true
+	
+func block():
+	player_blocking = true
+	switch_panel(["Fight","Skill","Item","Block"])
+	
+func damage_player(amount:int):
+	if player_blocking:
+		player_blocking = false
+	else:
+		player_hp -= amount
+
+func show_inventory():
+	print(inventory)
+	var names: Array = []
+	for i:Item in inventory:
+		names.append(i.name.to_lower())
+	switch_panel(names)
+	
+func test_item():
+	player_hp += 10
+	for i:Item in inventory:
+		if i.name == "Test Item":
+			inventory.erase(i)
+			break
+	switch_panel(["Fight","Skill","Item","Block"])

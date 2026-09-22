@@ -58,7 +58,9 @@ func initiate_battle_sequence(enemy:Echidna):
 	cr_node.process_mode = Node.PROCESS_MODE_DISABLED
 	var bs_inst: BattleSequence = load(battle_scene_path).instantiate()
 	bs_inst.enemy = enemy
+	bs_inst.player_hp = player.hp
 	bs_inst.inventory = player.inventory
+	bs_inst.inventory.append(load("res://items/test_item.tres") as Item)
 	bs_inst.global_position = player.camera.global_position
 	add_child(bs_inst)
 

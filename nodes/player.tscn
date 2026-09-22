@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://ciryltqrh061j"]
+[gd_scene load_steps=17 format=3 uid="uid://ciryltqrh061j"]
 
 [ext_resource type="Script" uid="uid://byldqhcmtriq5" path="res://scripts/player.gd" id="1_u63mc"]
+[ext_resource type="Resource" uid="uid://d0s1rsy5kr0ka" path="res://items/test_item.tres" id="2_7lbay"]
 [ext_resource type="Texture2D" uid="uid://xamcedu8ltrw" path="res://sprites/My_Character_001_idle.png" id="2_bms3g"]
 [ext_resource type="Texture2D" uid="uid://bfiontsoda1r7" path="res://sprites/My_Character_001_walk.png" id="3_me0cc"]
 [ext_resource type="PackedScene" uid="uid://5f87aiwrp2m3" path="res://nodes/inventory.tscn" id="4_hqdnm"]
@@ -279,6 +280,7 @@ _data = {
 [node name="CharacterBody2D" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_u63mc")
+inventory = [ExtResource("2_7lbay")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true

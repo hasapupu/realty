@@ -24,7 +24,7 @@ func nav_to(x,y):
 	naving = true
 	await finished_naving
 
-var hp:int:
+var hp:int = 100: 
 	set(value):
 		if value > max_hp:
 			hp = max_hp
@@ -32,9 +32,9 @@ var hp:int:
 			died.emit()
 		else:
 			hp = value
-var max_hp:int
+var max_hp:int = 100
 signal died
-var in_cuts := false #USE ONLY WHEN PLAYER IS BEING ANIMATED IN CUTS, FOR CHECKS AND DISABLES USE "active"
+var in_cuts := false #USE ONLY WHEN PLAYER IS BEING ANIMATED IN CUTSCENE, FOR CHECKS AND DISABLES USE "active"
 
 func _ready() -> void:
 	inventory_node.visible = false

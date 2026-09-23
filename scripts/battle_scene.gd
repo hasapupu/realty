@@ -32,6 +32,11 @@ var player_hp:int:
 			player_died.emit()
 		else:
 			player_hp = value
+			
+@onready var player_hp_bar:Slider = $Control/HSlider
+@onready var player_hp_text:Label = $Control/Label3
+@onready var hint_terminal:Label = $Control/Label5
+var hint_dict:={"fight":"Attack enemy","skill":"Attempt to convince enemy","item":"Open inventory","block":"Block next hit"}
 signal player_died
 
 func _ready():
@@ -45,6 +50,10 @@ func _ready():
 	difficulty = enemy.difficulty
 	succes_zone.size.x = difficulty
 	def_responses[enemy.enemy_name.to_lower()] = attack
+	hint_dict[enemy.enemy_name.to_lower()] = "Pick target"
+	player_hp_bar.max_value = player_max_hp
+	player_hp_bar.value = player_hp
+	player_hp_text.text = str(player_max_hp) + "/" + str(player_hp)
 	audio.play()
 	
 
@@ -74,6 +83,10 @@ func switch_selection(value:int):
 	else:
 		selected_i = value
 	(but_list[selected_i] as BattleButt).set_selected(true)
+	if hint_dict.has((but_list[selected_i] as BattleButt).get_text().to_lower()):
+		hint_terminal.text = "* " + hint_dict[(but_list[selected_i] as BattleButt).get_text().to_lower()]
+	else:
+		hint_terminal.text = ""
 
 func start_qte():
 	if c_tween:
@@ -115,7 +128,8 @@ func fight():
 	switch_panel([enemy.enemy_name])
 	
 func attack():
-	print("a")
+	hint_terminal.text = "* Time your attack!"
+	#print("a")
 	(but_list[selected_i] as BattleButt).set_selected(false)
 	player_attacking = true
 	
@@ -128,6 +142,9 @@ func damage_player(amount:int):
 		player_blocking = false
 	else:
 		player_hp -= amount
+		player_hp_bar.value = player_hp
+		player_hp_text.text = str(player_max_hp) + "/" + str(player_hp)
+
 
 func show_inventory():
 	print(inventory)

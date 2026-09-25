@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_lmofh")
-name = ""
+name = "Cutout"
 heal_amount = 0
 item_use_text_path = "res://dialogues/default_item.dialogue"
 metadata/_custom_type_script = "uid://7goi6fgdi5q7"

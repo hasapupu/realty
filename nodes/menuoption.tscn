@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dym0086x5p5wm"]
+
+[ext_resource type="Script" uid="uid://bmfka0culk4um" path="res://scripts/menuoption.gd" id="1_mwajn"]
+
+[node name="HBoxContainer" type="HBoxContainer"]
+script = ExtResource("1_mwajn")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 2
+text = ">"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "Fight"

@@ -1,0 +1,15 @@
+~ start
+Interrupting a moment of true love sounds ungentlemanly, truly only the lowest form of scum would even think of doing that.
+- Interrupt
+	Lovefool: I-I have something for you..
+	Emily: Really? For me?
+	Emily: Oh wait, you, yes you, I see you standing back there.
+	Emily: Can't you see we're in the middle of something here?
+	Emily: What do you want?
+	- Backroom: 
+		Emily: Oh come one, you're bothering me with that?
+		Emily: Do what you want I don't care.
+	- Nothing:
+		Emily: THEN GO AWAY!
+- Don't
+=> END

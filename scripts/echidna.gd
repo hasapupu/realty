@@ -10,10 +10,11 @@ class_name Echidna extends Control
 @export var difficulty = 35
 @export var player_acts := ["Test Act"]
 @export var p_act_dict := {"test act": test}
+@export var midi_map :MidiData
 var bs:BattleSequence
 signal spared
 signal died
 
 func test():
-	print("test")
+	bs.enemy_terminal.queue_write("Test dialogue.")
 	bs.switch_panel(["Fight","Skill","Item","Block"])

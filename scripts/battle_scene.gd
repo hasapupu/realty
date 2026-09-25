@@ -36,7 +36,12 @@ var player_hp:int:
 @onready var player_hp_bar:Slider = $Control/HSlider
 @onready var player_hp_text:Label = $Control/Label3
 @onready var hint_terminal:Label = $Control/Label5
-var hint_dict:={"fight":"Attack enemy","skill":"Attempt to convince enemy","item":"Open inventory","block":"Block next hit"}
+var hint_dict:={"fight":"Attack enemy","skill":"Attempt to convince enemy","item":"Open inventory","block":"Block next hit","test item":"Heals 10 hp"}
+@onready var enemy_name_label:Label = $Control2/Label
+@onready var enemy_health_bar:Slider = $HSlider
+@onready var enemy_health_label:Label = $HSlider/Label
+@onready var enemy_max_health:int = enemy.hp
+@onready var enemy_terminal:EnemyTerminal = $NinePatchRect2
 signal player_died
 
 func _ready():
@@ -54,7 +59,12 @@ func _ready():
 	player_hp_bar.max_value = player_max_hp
 	player_hp_bar.value = player_hp
 	player_hp_text.text = str(player_max_hp) + "/" + str(player_hp)
+	enemy_name_label.text = enemy.enemy_name
+	enemy_health_bar.max_value = enemy_max_health
+	enemy_health_bar.value = enemy.hp
+	damage_enemy(0)
 	audio.play()
+	#enemy_terminal.queue_write("Test dialogue.")
 	
 
 func add_butt(b_text:String):
@@ -121,7 +131,7 @@ func _process(delta):
 						
 			else:
 				player_attacking = false
-				enemy.hp -= 170 - (cursor.position.distance_to(cursor_final_pos))
+				damage_enemy(170 - (cursor.position.distance_to(cursor_final_pos)))
 				switch_panel(["Fight","Skill","Item","Block"])
 
 func fight():
@@ -163,3 +173,8 @@ func test_item():
 			inventory.erase(i)
 			break
 	switch_panel(["Fight","Skill","Item","Block"])
+	
+func damage_enemy(amount:int):
+	enemy.hp -= amount
+	enemy_health_bar.value = enemy.hp
+	enemy_health_label.text = str(enemy.hp) + "/" + str(enemy_max_health)

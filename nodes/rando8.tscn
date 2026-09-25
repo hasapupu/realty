@@ -1,11 +1,38 @@
 [gd_scene load_steps=10 format=3 uid="uid://dd0svtey74v7y"]
 
-[ext_resource type="Script" uid="uid://dml3g4oflhhio" path="res://Scripts/rando_8.gd" id="2_i4bhd"]
+[ext_resource type="Script" uid="uid://dml3g4oflhhio" path="res://scripts/rando_8.gd" id="2_i4bhd"]
 [ext_resource type="Texture2D" uid="uid://cyt2bjembtfs7" path="res://sprites/rando15/rando15_rotate.png" id="2_shslx"]
 [ext_resource type="Texture2D" uid="uid://bav26t0bybtpb" path="res://sprites/rando15/rando15_walk.png" id="3_shslx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40kyk"]
 size = Vector2(5, 4)
+
+[sub_resource type="Animation" id="Animation_shslx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(23, 83, 17, 29)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_shslx")]
+}
 
 [sub_resource type="Animation" id="Animation_i4bhd"]
 resource_name = "idle"
@@ -34,31 +61,31 @@ tracks/1/keys = {
 "values": [ExtResource("2_shslx")]
 }
 
-[sub_resource type="Animation" id="Animation_shslx"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_hqoa3"]
+resource_name = "look_up"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody2D:region_rect")
+tracks/0/path = NodePath("StaticBody2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(23, 83, 17, 29)]
+"update": 1,
+"values": [ExtResource("2_shslx")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("StaticBody2D:texture")
+tracks/1/path = NodePath("StaticBody2D:region_rect")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_shslx")]
+"values": [Rect2(23, 147, 18, 29)]
 }
 
 [sub_resource type="Animation" id="Animation_s8m3b"]
@@ -88,33 +115,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [ExtResource("3_shslx")]
-}
-
-[sub_resource type="Animation" id="Animation_hqoa3"]
-resource_name = "look_up"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("StaticBody2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_shslx")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("StaticBody2D:region_rect")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Rect2(23, 147, 18, 29)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cfqcv"]

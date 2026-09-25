@@ -22,5 +22,5 @@ func move_player(x,y):
 	player.anim.play("walk_up")
 	await get_tree().create_timer(1)
 	await player.nav_to(x,y)
-	player.idle_dir = "idle_down"
+	player.anim.play("idle_down")
 	player.in_cuts = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://ygrx4347wq1c"]
+[gd_scene load_steps=64 format=4 uid="uid://ygrx4347wq1c"]
 
 [ext_resource type="Script" uid="uid://bsphwdskiix6s" path="res://scripts/cafe.gd" id="1_cs2r0"]
 [ext_resource type="Texture2D" uid="uid://ju4xkdkcdqd1" path="res://sprites/Bedroom Asset Pack 001.png" id="1_qaqna"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://5easq2avroag" path="res://nodes/exit.tscn" id="21_kkpbd"]
 [ext_resource type="PackedScene" uid="uid://tnbsavwou10i" path="res://nodes/loveparticles.tscn" id="21_rgait"]
 [ext_resource type="Script" uid="uid://bfetnocwpi4i3" path="res://scripts/overworld_room.gd" id="22_cs2r0"]
+[ext_resource type="Script" uid="uid://d2ly0kebqjv34" path="res://scripts/battle_loader.gd" id="23_gidk0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3ry3"]
 texture = ExtResource("1_qaqna")
@@ -1837,6 +1838,8 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32
 outlines = Array[PackedVector2Array]([PackedVector2Array(-27, 109, -7, 111, 141, 106, 154, 90, 160, 85, 216, 86, 229, 86, 227, 74, 148, 73, 84, 77, 79, 88, 65, 88, 48, 81, 34, 74, 0, 71, -20, 74, -31, 83)])
 agent_radius = 3.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajjug"]
+
 [sub_resource type="Resource" id="Resource_rgait"]
 script = ExtResource("22_cs2r0")
 instance_path = "res://nodes/cafe_backroom.tscn"
@@ -2113,6 +2116,14 @@ navigation_layers = 2
 visible = false
 position = Vector2(216, 43)
 speed_scale = 2.0
+
+[node name="BattleLoader" type="Area2D" parent="Background"]
+position = Vector2(85, -28)
+script = ExtResource("23_gidk0")
+metadata/_custom_type_script = "uid://d2ly0kebqjv34"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/BattleLoader"]
+shape = SubResource("RectangleShape2D_ajjug")
 
 [node name="Exits" type="Node2D" parent="."]
 

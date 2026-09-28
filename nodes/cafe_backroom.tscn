@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://c7sli74wcjx8a"]
+[gd_scene load_steps=11 format=4 uid="uid://c7sli74wcjx8a"]
 
 [ext_resource type="Script" uid="uid://bdo31y3qhfdgo" path="res://scripts/scenecontext.gd" id="1_emxjm"]
 [ext_resource type="Texture2D" uid="uid://ju4xkdkcdqd1" path="res://sprites/Bedroom Asset Pack 001.png" id="1_xja0e"]
 [ext_resource type="PackedScene" uid="uid://5easq2avroag" path="res://nodes/exit.tscn" id="2_wp1d7"]
 [ext_resource type="Script" uid="uid://bfetnocwpi4i3" path="res://scripts/overworld_room.gd" id="3_gix6j"]
+[ext_resource type="Script" uid="uid://d2ly0kebqjv34" path="res://scripts/battle_loader.gd" id="3_orrfp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wp1d7"]
 texture = ExtResource("1_xja0e")
@@ -380,6 +381,9 @@ texture = ExtResource("1_xja0e")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_wp1d7")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orrfp"]
+size = Vector2(44, 28)
+
 [sub_resource type="Resource" id="Resource_emxjm"]
 script = ExtResource("3_gix6j")
 instance_path = "res://nodes/cafe.tscn"
@@ -402,6 +406,14 @@ tile_set = SubResource("TileSet_gix6j")
 [node name="TileMapLayer2" type="TileMapLayer" parent="Background"]
 tile_map_data = PackedByteArray("AAAAAPr/AAAUAAUAAAD7//r/AAABAAsAAAD+//r/AAADAAsAAAAGAPv/AAAFAAsAAAAGAPz/AAAFAAsAAAAGAP3/AAAFAAsAAAAGAP7/AAAFAAsAAAAGAP//AAAFAAsAAAAGAAAAAAAFAAsAAAD6//3/AAAAAAsAAAD6////AAAAAAsAAAD///3/AAANAAkAAAD///7/AAANAAoAAAAAAP3/AAAOAAkAAAAAAP7/AAAOAAoAAAABAP3/AAAPAAkAAAABAP7/AAAPAAoAAAD9/wEAAAATAAoAAAADAAEAAAAUAAoAAAADAPn/AAAUAA0AAAA=")
 tile_set = SubResource("TileSet_gix6j")
+
+[node name="BattleLoader" type="Area2D" parent="Background"]
+position = Vector2(8, -32)
+script = ExtResource("3_orrfp")
+metadata/_custom_type_script = "uid://d2ly0kebqjv34"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/BattleLoader"]
+shape = SubResource("RectangleShape2D_orrfp")
 
 [node name="YSort" type="Node2D" parent="."]
 y_sort_enabled = true

@@ -8,7 +8,7 @@
   PreviewEnd = 0
   Genre = "rock"
   MediaType = "cd"
-  MusicStream = "combative dance.wav"
+  MusicStream = "C:\Users\Kornel\realty\audio\music\combative dance.wav"
 }
 [SyncTrack]
 {

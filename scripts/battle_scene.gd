@@ -175,6 +175,9 @@ func test_item():
 	switch_panel(["Fight","Skill","Item","Block"])
 	
 func damage_enemy(amount:int):
-	enemy.hp -= amount
-	enemy_health_bar.value = enemy.hp
-	enemy_health_label.text = str(enemy.hp) + "/" + str(enemy_max_health)
+	if enemy.hp - amount > 0:
+		enemy.hp -= amount
+		enemy_health_bar.value = enemy.hp
+		enemy_health_label.text = str(enemy.hp) + "/" + str(enemy_max_health)
+	else:
+		enemy.died.emit()

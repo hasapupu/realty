@@ -14,7 +14,13 @@ class_name Echidna extends Control
 var bs:BattleSequence
 signal spared
 signal died
+var test_points := 0
 
 func test():
-	bs.enemy_terminal.queue_write("Test dialogue.")
-	bs.switch_panel(["Fight","Skill","Item","Block"])
+	test_points += 1
+	if test_points < 3:
+		bs.enemy_terminal.queue_write("Test dialogue 1.")
+		bs.enemy_terminal.queue_write("Test dialogue 2.")
+		bs.switch_panel(["Fight","Skill","Item","Block"])
+	else:
+		spared.emit()

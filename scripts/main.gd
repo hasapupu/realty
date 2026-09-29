@@ -65,6 +65,7 @@ func initiate_battle_sequence(enemy:Echidna):
 	bs_inst.inventory.append(load("res://items/test_item.tres") as Item)
 	enemy.spared.connect(battle_spared)
 	enemy.died.connect(battle_killed)
+	bs_inst.player_died.connect(game_over)
 	bs_inst.global_position = player.camera.global_position
 	battle_parent.add_child(bs_inst)
 
@@ -78,3 +79,6 @@ func battle_spared():
 	
 func battle_killed():
 	stop_battle_sequence()
+	
+func game_over():
+	get_tree().change_scene_to_file("res://nodes/game_over.tscn")

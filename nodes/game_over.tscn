@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=3 uid="uid://5v5ujotv8puq"]
+
+[ext_resource type="Script" uid="uid://b28wueqvp4ad0" path="res://scripts/game_over.gd" id="1_5u83j"]
+[ext_resource type="FontFile" uid="uid://d2i3pw07x727l" path="res://fonts/quaver.ttf" id="1_dadei"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dadei"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5u83j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iefa7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ox31u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ik1xa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_378ct"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_njdmh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qmt7e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gkt1d"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5u83j")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -92.0
+offset_right = 77.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_dadei")
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -129.0
+offset_top = -8.0
+offset_right = 48.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_default_cursor_shape = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_dadei")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dadei")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5u83j")
+theme_override_styles/hovered = SubResource("StyleBoxEmpty_iefa7")
+theme_override_styles/hovered_selected = SubResource("StyleBoxEmpty_ox31u")
+theme_override_styles/hovered_selected_focus = SubResource("StyleBoxEmpty_ik1xa")
+theme_override_styles/selected = SubResource("StyleBoxEmpty_378ct")
+theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_njdmh")
+theme_override_styles/cursor_unfocused = SubResource("StyleBoxEmpty_qmt7e")
+theme_override_styles/cursor = SubResource("StyleBoxEmpty_gkt1d")
+allow_search = false
+item_count = 2
+item_0/text = " Continue"
+item_1/text = " Leave"
+
+[node name="Label" type="Label" parent="ItemList"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_dadei")
+theme_override_font_sizes/font_size = 24
+text = ">"
+
+[node name="Label2" type="Label" parent="ItemList"]
+visible = false
+layout_mode = 0
+offset_top = 29.0
+offset_right = 40.0
+offset_bottom = 53.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_dadei")
+theme_override_font_sizes/font_size = 24
+text = ">"
+
+[connection signal="item_activated" from="ItemList" to="." method="_on_item_list_item_activated"]
+[connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]

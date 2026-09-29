@@ -29,9 +29,10 @@ var player_hp:int:
 		if value > player_max_hp:
 			player_hp = player_max_hp
 		elif value<0:
-			player_died.emit()
+			kill_player()
 		else:
 			player_hp = value
+@onready var fadeout_node:ColorRect = $ColorRect4
 			
 @onready var player_hp_bar:Slider = $Control/HSlider
 @onready var player_hp_text:Label = $Control/Label3
@@ -50,6 +51,7 @@ func _ready():
 	audio.stream = load(enemy.enemy_music_path)
 	rhythm_notifier.bpm = enemy.music_bpm
 	rhythm_notifier.beats(input_rate,true,0).connect(func(start_qte): start_qte())
+	rhythm_notifier.beats(8,true,0).connect(damage_player)
 	switch_panel(["Fight","Skill","Item","Block"])
 	input_rate = enemy.input_rate
 	difficulty = enemy.difficulty
@@ -147,7 +149,7 @@ func block():
 	player_blocking = true
 	switch_panel(["Fight","Skill","Item","Block"])
 	
-func damage_player(amount:int):
+func damage_player(amount:int = 10):
 	if player_blocking:
 		player_blocking = false
 	else:
@@ -181,3 +183,13 @@ func damage_enemy(amount:int):
 		enemy_health_label.text = str(enemy.hp) + "/" + str(enemy_max_health)
 	else:
 		enemy.died.emit()
+
+func kill_player():
+	c_tween.stop()
+	c_active = false
+	audio.stop()
+	await get_tree().create_timer(1)
+	var temp_tween = get_tree().create_tween()
+	temp_tween.tween_property(fadeout_node,"modulate:a",255,2)
+	await temp_tween.finished
+	player_died.emit()

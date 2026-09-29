@@ -5,6 +5,7 @@ class_name GameOver extends Control
 @onready var labels := [$ItemList/Label,$ItemList/Label2]
 
 func _ready() -> void:
+	options.grab_focus()
 	options.select(0)
 
 

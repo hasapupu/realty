@@ -5,6 +5,7 @@ class_name GameOver extends Control
 @onready var labels := [$ItemList/Label,$ItemList/Label2]
 
 func _ready() -> void:
+	SoundManager.play_music(load("res://audio/music/to my midi keyboard(game over).wav"))
 	options.grab_focus()
 	options.select(0)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://de6pth4lhbrx3"]
+[gd_scene load_steps=23 format=3 uid="uid://de6pth4lhbrx3"]
 
 [ext_resource type="Script" uid="uid://1ipdc2rptlx8" path="res://scripts/battle_scene.gd" id="1_3431j"]
 [ext_resource type="Texture2D" uid="uid://li4wknkj6rty" path="res://sprites/BlackandWhiteUI.png" id="1_pgqjp"]
@@ -48,6 +48,43 @@ thickness = 2
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_h847m"]
 color = Color(1, 1, 1, 1)
 thickness = 10
+
+[sub_resource type="Animation" id="Animation_c8vew"]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qk6qr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4xdy4"]
+_data = {
+&"RESET": SubResource("Animation_qk6qr"),
+&"fade_out": SubResource("Animation_c8vew")
+}
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -360,9 +397,20 @@ bbcode_enabled = true
 [node name="ColorRect4" type="ColorRect" parent="."]
 z_index = 1000
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -120.0
+offset_right = 160.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect4"]
+libraries = {
+&"": SubResource("AnimationLibrary_4xdy4")
+}

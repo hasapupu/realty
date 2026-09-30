@@ -28,9 +28,10 @@ var player_hp:int:
 	set(value):
 		if value > player_max_hp:
 			player_hp = player_max_hp
-		elif value<0:
+		elif value<=0:
 			kill_player()
 		else:
+			print(value)
 			player_hp = value
 @onready var fadeout_node:ColorRect = $ColorRect4
 			
@@ -43,15 +44,17 @@ var hint_dict:={"fight":"Attack enemy","skill":"Attempt to convince enemy","item
 @onready var enemy_health_label:Label = $HSlider/Label
 @onready var enemy_max_health:int = enemy.hp
 @onready var enemy_terminal:EnemyTerminal = $NinePatchRect2
+@onready var fadeout_anim:AnimationPlayer = $ColorRect4/AnimationPlayer
 signal player_died
 
 func _ready():
+	#fadeout_node.self_modulate.a = 0
 	enemy.bs = self
 	$EnemyPos.add_child(enemy)
 	audio.stream = load(enemy.enemy_music_path)
 	rhythm_notifier.bpm = enemy.music_bpm
 	rhythm_notifier.beats(input_rate,true,0).connect(func(start_qte): start_qte())
-	rhythm_notifier.beats(8,true,0).connect(damage_player)
+	rhythm_notifier.beats(8,true,8).connect(damage_player)
 	switch_panel(["Fight","Skill","Item","Block"])
 	input_rate = enemy.input_rate
 	difficulty = enemy.difficulty
@@ -149,11 +152,12 @@ func block():
 	player_blocking = true
 	switch_panel(["Fight","Skill","Item","Block"])
 	
-func damage_player(amount:int = 10):
+func damage_player(bullshit:int = 1, amount:int = 100):
+	print(amount)
 	if player_blocking:
 		player_blocking = false
 	else:
-		player_hp -= amount
+		player_hp = player_hp - amount
 		player_hp_bar.value = player_hp
 		player_hp_text.text = str(player_max_hp) + "/" + str(player_hp)
 
@@ -185,11 +189,13 @@ func damage_enemy(amount:int):
 		enemy.died.emit()
 
 func kill_player():
-	c_tween.stop()
+	#c_tween.stop()
 	c_active = false
 	audio.stop()
-	await get_tree().create_timer(1)
-	var temp_tween = get_tree().create_tween()
-	temp_tween.tween_property(fadeout_node,"modulate:a",255,2)
-	await temp_tween.finished
+	#await get_tree().create_timer(1)
+	fadeout_anim.play("fade_out")
+	await  get_tree().process_frame
+	await  fadeout_anim.animation_finished
+	print("aaaaaaa")
+	await get_tree().create_timer(1).tiemout
 	player_died.emit()

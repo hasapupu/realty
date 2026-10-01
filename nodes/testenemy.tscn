@@ -17,7 +17,7 @@ offset_top = -31.44
 offset_right = -31.68
 offset_bottom = -31.44
 script = ExtResource("1_k406k")
-music_bpm = 160
+music_bpm = 155
 input_rate = 2.0
 metadata/_custom_type_script = "uid://vaawwo8pvqth"
 

@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 		if bs.enemy_attack_notes[e_attack_index] <= curr_time:
 			enemy_attack.emit()
 			e_attack_index += 1
-		if bs.enemy_fakeout_notes[player_index] <= curr_time:
+		if bs.enemy_fakeout_notes[e_fakeout_index] <= curr_time:
 			enemy_fakeout.emit()
 			e_fakeout_index += 1
 

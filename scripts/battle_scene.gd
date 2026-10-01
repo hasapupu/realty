@@ -115,12 +115,13 @@ func switch_selection(value:int):
 	else:
 		hint_terminal.text = ""
 
-func start_qte():
+func start_qte(duration:float):
+	print(duration)
 	if c_tween:
 		c_tween.stop()
 	cursor.position = cursor_init_pos
 	c_tween = get_tree().create_tween()
-	c_tween.tween_property(cursor,"position",cursor_final_pos,rhythm_notifier.beat_length * input_rate)
+	c_tween.tween_property(cursor,"position",cursor_final_pos,duration)
 	c_active = true
 	
 func _process(delta):

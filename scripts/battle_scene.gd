@@ -46,6 +46,10 @@ var hint_dict:={"fight":"Attack enemy","skill":"Attempt to convince enemy","item
 @onready var enemy_terminal:EnemyTerminal = $NinePatchRect2
 @onready var fadeout_anim:AnimationPlayer = $ColorRect4/AnimationPlayer
 signal player_died
+var enemy_attack_notes :=[]
+var player_notes :=[]
+var enemy_fakeout_notes := []
+@onready var note_timer :BattleTimer = $Timer
 
 func _ready():
 	#fadeout_node.self_modulate.a = 0
@@ -53,8 +57,9 @@ func _ready():
 	$EnemyPos.add_child(enemy)
 	audio.stream = load(enemy.enemy_music_path)
 	rhythm_notifier.bpm = enemy.music_bpm
-	rhythm_notifier.beats(input_rate,true,0).connect(func(start_qte): start_qte())
-	rhythm_notifier.beats(8,true,8).connect(damage_player)
+	#rhythm_notifier.beats(input_rate,true,0).connect(func(start_qte): start_qte())
+	#rhythm_notifier.beats(8,true,8).connect(damage_player)
+	note_timer.connect("player_note",start_qte)
 	switch_panel(["Fight","Skill","Item","Block"])
 	input_rate = enemy.input_rate
 	difficulty = enemy.difficulty
@@ -68,6 +73,13 @@ func _ready():
 	enemy_health_bar.max_value = enemy_max_health
 	enemy_health_bar.value = enemy.hp
 	damage_enemy(0)
+	extract_notes()
+	print(player_notes)
+	print(enemy_fakeout_notes)
+	print(enemy_attack_notes)
+	note_timer.bs = self
+	note_timer.wait_time = audio.stream.get_length()
+	note_timer.start()
 	audio.play()
 	#enemy_terminal.queue_write("Test dialogue.")
 	
@@ -199,3 +211,44 @@ func kill_player():
 	print("aaaaaaa")
 	await get_tree().create_timer(1).tiemout
 	player_died.emit()
+
+func get_note_start_times(midi_data: MidiData, bpm: float) -> Array[Dictionary]:
+	var notes: Array[Dictionary] = []
+
+	# Duration of one beat in seconds.
+	var seconds_per_beat := 60.0 / bpm
+
+	for track_index in midi_data.tracks.size():
+		var track = midi_data.tracks[track_index]
+		var time_seconds := track.get_offset_in_seconds()
+
+		for event in track.events:
+			# Convert MIDI ticks -> seconds.
+			var delta_seconds := (
+				float(event.delta_time)
+				/ float(midi_data.header.ticks_per_beat)
+				* seconds_per_beat
+			)
+
+			time_seconds += delta_seconds
+
+			if event is MidiData.NoteOn and event.velocity > 0:
+				notes.append({
+					"time": time_seconds,
+					"note": event.note,
+					"velocity": event.velocity,
+					"track": track_index
+				})
+
+	return notes
+	
+func extract_notes():
+	var temp_notes := get_note_start_times(enemy.midi_map,enemy.music_bpm)
+	#print(temp_notes)
+	for i in temp_notes:
+		if i["note"] == 48:
+			player_notes.append(i["time"])
+		elif i["note"] == 49:
+			enemy_attack_notes.append(i["time"])
+		elif i["note"] == 50:
+			enemy_fakeout_notes.append(i["time"])

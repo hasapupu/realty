@@ -10,7 +10,7 @@ class_name Echidna extends Control
 @export var difficulty = 35
 @export var player_acts := ["Test Act"]
 @export var p_act_dict := {"test act": test}
-@export var midi_map :MidiData
+@export var midi_map : MidiData = preload("res://midi/generalbattletheme.mid")
 var bs:BattleSequence
 signal spared
 signal died

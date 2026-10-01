@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2u6c847fqq1e"]
+
+[ext_resource type="FontFile" uid="uid://ccd8hxfb26ry2" path="res://fonts/fibberish.ttf" id="1_8go17"]
+
+[node name="Label" type="Label"]
+z_index = 10
+offset_left = 25.3031
+offset_top = 156.175
+offset_right = 65.3031
+offset_bottom = 179.175
+rotation = 1.57839
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_8go17")
+theme_override_font_sizes/font_size = 8
+text = ">"

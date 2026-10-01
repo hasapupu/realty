@@ -1,4 +1,4 @@
-class_name NavNPC extends CharacterBody2D
+class_name NavigationNPC extends CharacterBody2D
 
 @onready var nav_agent : NavigationAgent2D = $NavigationAgent2D
 var naving := false:

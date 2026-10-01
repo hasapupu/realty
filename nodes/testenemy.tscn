@@ -17,9 +17,8 @@ offset_top = -31.44
 offset_right = -31.68
 offset_bottom = -31.44
 script = ExtResource("1_k406k")
-enemy_name = "Test Enemy"
-enemy_music_path = "res://audio/music/deservioli.wav"
-music_bpm = 196
+music_bpm = 160
+input_rate = 2.0
 metadata/_custom_type_script = "uid://vaawwo8pvqth"
 
 [node name="Sprite2D" type="TextureRect" parent="."]

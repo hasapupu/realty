@@ -6,5 +6,6 @@ func _ready() -> void:
 	connect("body_entered",start_battle)
 
 func start_battle(body:Player):
+	SoundManager.stop_music()
 	main.initiate_battle_sequence(load(enemy_path).instantiate())
 	queue_free()

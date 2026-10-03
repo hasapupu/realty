@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://5f87aiwrp2m3"]
+[gd_scene load_steps=13 format=3 uid="uid://5f87aiwrp2m3"]
 
+[ext_resource type="Script" uid="uid://dks0erip67c5w" path="res://scripts/inventory.gd" id="1_60lq6"]
 [ext_resource type="Texture2D" uid="uid://d3kejw05ma385" path="res://sprites/CozyUi.png" id="1_i02ac"]
 [ext_resource type="FontFile" uid="uid://ccd8hxfb26ry2" path="res://fonts/fibberish.ttf" id="2_7pofv"]
 
@@ -28,6 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_60lq6")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 z_index = 10
@@ -97,3 +99,5 @@ offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0, 0, 0, 0.419608)
 metadata/_edit_use_anchors_ = true
+
+[connection signal="item_selected" from="NinePatchRect/ItemList" to="." method="_on_item_list_item_selected"]

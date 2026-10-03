@@ -11,6 +11,7 @@ class_name Echidna extends Control
 @export var player_acts := ["Test Act"]
 @export var p_act_dict := {"test act": test}
 @export var midi_map : MidiData = preload("res://midi/generalbattletheme.mid")
+@export var talk_voice_path:= "res://audio/sfx/def_talkvoice.wav"
 var bs:BattleSequence
 signal spared
 signal died

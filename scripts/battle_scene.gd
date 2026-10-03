@@ -53,6 +53,7 @@ var enemy_fakeout_notes := []
 var cursor : Control
 var c_tweens := []
 var c_index := 0
+var button_sfx_path := "res://audio/sfx/menu sfx.wav"
 
 func _ready():
 	#fadeout_node.self_modulate.a = 0
@@ -75,6 +76,7 @@ func _ready():
 	enemy_name_label.text = enemy.enemy_name
 	enemy_health_bar.max_value = enemy_max_health
 	enemy_health_bar.value = enemy.hp
+	enemy_terminal.talk_voice_path = enemy.talk_voice_path
 	damage_enemy(0)
 	extract_notes()
 	print(player_notes)
@@ -136,6 +138,7 @@ func _process(delta):
 				c_tweens[c_index].stop()
 				cursor.visible = false
 				if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
+					SoundManager.play_sound(load(button_sfx_path))
 					switch_selection(selected_i - 1)
 				#print(cursor.position.distance_to(cursor_final_pos))
 				c_index += 1
@@ -143,6 +146,7 @@ func _process(delta):
 				c_tweens[c_index].stop()
 				cursor.visible = false
 				if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
+					SoundManager.play_sound(load(button_sfx_path))
 					switch_selection(selected_i + 1)
 				#print(cursor.position.distance_to(cursor_final_pos))
 				c_index += 1
@@ -152,9 +156,11 @@ func _process(delta):
 				if !player_attacking:
 					if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
 						if def_responses.has(but_list[selected_i].get_text().to_lower()):
+							SoundManager.play_sound(load(button_sfx_path))
 							(def_responses[but_list[selected_i].get_text().to_lower()] as Callable).call()
 						elif enemy.p_act_dict.has(but_list[selected_i].get_text().to_lower()):
 							#print("process")
+							SoundManager.play_sound(load(button_sfx_path))
 							(enemy.p_act_dict[but_list[selected_i].get_text().to_lower()] as Callable).call()
 						c_index += 1
 				else:

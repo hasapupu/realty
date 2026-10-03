@@ -4,6 +4,7 @@ class_name EnemyTerminal extends NinePatchRect
 var queue:Array = []
 var writing := false
 signal finished_writing
+var talk_voice_path : String
 
 func _ready() -> void:
 	#visible = false
@@ -15,8 +16,9 @@ func write(inp: String):
 	for i in inp:
 		outp.text+= i
 		if i not in [" ", "\n"]:
-			await get_tree().create_timer(.01).timeout
-	await get_tree().create_timer(.4).timeout
+			SoundManager.play_sound(load(talk_voice_path),"sfx")
+			await get_tree().create_timer(.05).timeout
+	await get_tree().create_timer(.7).timeout
 	writing = false
 	finished_writing.emit()
 	

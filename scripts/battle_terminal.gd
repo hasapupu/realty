@@ -6,7 +6,7 @@ var writing := false
 signal finished_writing
 
 func _ready() -> void:
-	visible = false
+	#visible = false
 	outp.text = ""
 	
 func write(inp: String):
@@ -26,9 +26,6 @@ func queue_write(inp:String):
 func _process(delta: float) -> void:
 	if queue.size() > 0:
 		if writing == false:
-			visible = true
+			#visible = true
 			write(queue[0])
 			queue.remove_at(0)
-	else:
-		if writing == false:
-			visible = false

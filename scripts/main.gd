@@ -8,7 +8,7 @@ var curr_room: SceneContext
 @onready var def_mus_path: String = "res://audio/music/coffeeshop.wav"
 var save_path := "user://everything.tres"
 const battle_scene_path := "res://nodes/battle_scene.tscn"
-@onready var battle_parent : Node2D = $battleParent
+@onready var battle_parent : CanvasLayer = $battleParent
 
 func _ready():
 	if ResourceLoader.exists(save_path) == false:
@@ -55,19 +55,27 @@ func load_overworld_room(new_room:OWRoom):
 	player.camera.reset_smoothing()
 	#player.camera.position_smoothing_enabled = true
 	
-func initiate_battle_sequence(enemy:Echidna):
-	cr_node.process_mode = Node.PROCESS_MODE_DISABLED
+func initiate_battle_sequence(enemy: Echidna):
 	var bs_inst: BattleSequence = load(battle_scene_path).instantiate()
+
 	bs_inst.enemy = enemy
 	bs_inst.player_max_hp = player.max_hp
 	bs_inst.player_hp = player.hp
 	bs_inst.inventory = player.inventory
 	bs_inst.inventory.append(load("res://items/test_item.tres") as Item)
+
+	battle_parent.add_child(bs_inst)
+
+	player.camera.reset_smoothing()
+	await get_tree().process_frame
+
+	bs_inst.position = Vector2.ZERO
+
 	enemy.spared.connect(battle_spared)
 	enemy.died.connect(battle_killed)
 	bs_inst.player_died.connect(game_over)
-	bs_inst.global_position = player.camera.global_position
-	battle_parent.add_child(bs_inst)
+
+	cr_node.process_mode = Node.PROCESS_MODE_DISABLED
 
 func stop_battle_sequence():
 	battle_parent.get_child(0).queue_free()

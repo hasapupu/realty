@@ -9,8 +9,8 @@ var def_responses:= {"fight":fight,"skill":show_skills,"item":show_inventory,"bl
 var but_list:Array
 var selected_i := 0
 var inventory : Array
-var cursor_init_pos := Vector2(298,158)
-var cursor_final_pos := Vector2(25,158)
+var cursor_init_pos := Vector2(298,155)
+var cursor_final_pos := Vector2(25,155)
 var cursors := []
 var cursor_path := "res://nodes/cursor.tscn"
 var difficulty := 30 #0 es 170 kozti szam, minel kisebb, annal nehezebb
@@ -35,7 +35,6 @@ var player_hp:int:
 			#print(value)
 			player_hp = value
 @onready var fadeout_node:ColorRect = $ColorRect4
-			
 @onready var player_hp_bar:Slider = $Control/HSlider
 @onready var player_hp_text:Label = $Control/Label3
 @onready var hint_terminal:Label = $Control/Label5
@@ -209,7 +208,7 @@ func damage_enemy(amount:int):
 	if enemy.hp - amount > 0:
 		enemy.hp -= amount
 		enemy_health_bar.value = enemy.hp
-		enemy_health_label.text = str(enemy.hp) + "/" + str(enemy_max_health)
+		#enemy_health_label.text = str(enemy.hp) + "/" + str(enemy_max_health)
 	else:
 		enemy.died.emit()
 

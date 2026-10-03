@@ -9,4 +9,4 @@ script = ExtResource("1_a3ry3")
 process_mode = 1
 y_sort_enabled = true
 
-[node name="battleParent" type="Node2D" parent="."]
+[node name="battleParent" type="CanvasLayer" parent="."]

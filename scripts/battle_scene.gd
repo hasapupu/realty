@@ -54,17 +54,20 @@ var cursor : Control
 var c_tweens := []
 var c_index := 0
 var button_sfx_path := "res://audio/sfx/menu sfx.wav"
+@export var intro_timeout_length := .5
 
 func _ready():
 	#fadeout_node.self_modulate.a = 0
+	await get_tree().create_timer(intro_timeout_length).timeout
 	enemy.bs = self
 	$EnemyPos.add_child(enemy)
+	SoundManager.play_sound(load("res://audio/sfx/add_sound (1).wav"),"sfx")
+	await get_tree().create_timer(intro_timeout_length).timeout
 	audio.stream = load(enemy.enemy_music_path)
 	rhythm_notifier.bpm = enemy.music_bpm
 	#rhythm_notifier.beats(input_rate,true,0).connect(func(start_qte): start_qte())
 	#rhythm_notifier.beats(8,true,8).connect(damage_player)
 	note_timer.connect("player_note",start_qte)
-	switch_panel(["Fight","Skill","Item","Block"])
 	input_rate = enemy.input_rate
 	difficulty = enemy.difficulty
 	succes_zone.size.x = difficulty
@@ -77,17 +80,31 @@ func _ready():
 	enemy_health_bar.max_value = enemy_max_health
 	enemy_health_bar.value = enemy.hp
 	enemy_terminal.talk_voice_path = enemy.talk_voice_path
-	damage_enemy(0)
+	$Control2.visible = true
+	SoundManager.play_sound(load("res://audio/sfx/add_sound (1).wav"),"sfx")
+	await get_tree().create_timer(intro_timeout_length).timeout
+	$HSlider.visible = true
+	$Control.visible = true
+	SoundManager.play_sound(load("res://audio/sfx/add_sound (1).wav"),"sfx")
+	await get_tree().create_timer(intro_timeout_length).timeout
+	$NinePatchRect2.visible = true
+	$NinePatchRect.visible = true
+	SoundManager.play_sound(load("res://audio/sfx/add_sound (1).wav"),"sfx")
+	await get_tree().create_timer(intro_timeout_length).timeout
+	#damage_enemy(0)
 	extract_notes()
-	print(player_notes)
+	#print(player_notes)
 	#print(enemy_fakeout_notes)
 	#print(enemy_attack_notes)
+	$ColorRect.visible = true
 	note_timer.bs = self
 	note_timer.wait_time = audio.stream.get_length()
 	note_timer.start()
+	enemy_terminal.queue_write("* (" + enemy.enemy_name + [" showed up!", " appeared!"," attacks!" ].pick_random() + ")")
+	switch_panel(["Fight","Skill","Item","Block"])
+
 	audio.play()
 	#enemy_terminal.queue_write("Test dialogue.")
-	
 
 func add_butt(b_text:String):
 	var b_inst:BattleButt = load(but_path).instantiate()

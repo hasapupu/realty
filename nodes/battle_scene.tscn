@@ -16,7 +16,7 @@ default_font_size = 16
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h847m"]
 shader = ExtResource("4_pvnho")
-shader_parameter/speed = 0.1
+shader_parameter/speed = 0.5
 shader_parameter/pixelation = 8.0
 shader_parameter/zoom = 2.0
 shader_parameter/gradient_pixelation = 0.2
@@ -116,6 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
+visible = false
 z_index = 5
 layout_mode = 1
 anchors_preset = 8
@@ -152,6 +153,7 @@ theme_override_constants/v_separation = 8
 columns = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_h847m")
 layout_mode = 1
@@ -160,7 +162,7 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -29.0
+offset_left = -43.0
 offset_top = -120.0
 offset_right = 160.0
 offset_bottom = 16.0
@@ -195,6 +197,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -265,7 +268,7 @@ pivot_offset = Vector2(185, 0)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_i5xfp")
 theme_override_font_sizes/font_size = 16
-text = "*asldkjfhalskdjhflkashdflkjhasdfasdfa"
+text = "*"
 autowrap_mode = 3
 clip_text = true
 
@@ -296,6 +299,7 @@ offset_bottom = 123.92
 color = Color(0, 0, 0, 1)
 
 [node name="Control2" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -337,6 +341,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HSlider" type="HSlider" parent="."]
+visible = false
 z_index = 10
 layout_mode = 1
 anchors_preset = 8
@@ -362,9 +367,9 @@ scrollable = false
 
 [node name="Label" type="Label" parent="HSlider"]
 layout_mode = 0
-offset_left = -29.0
+offset_left = -26.0
 offset_top = -3.0
-offset_right = 57.0
+offset_right = 60.0
 offset_bottom = 20.0
 pivot_offset = Vector2(0, 11)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -374,6 +379,7 @@ text = "HP:"
 vertical_alignment = 1
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="."]
+visible = false
 z_index = 10
 layout_mode = 1
 anchors_preset = -1

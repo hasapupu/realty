@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://vaawwo8pvqth" path="res://scripts/echidna.gd" id="1_k406k"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_k406k"]
-size = Vector2(64, 64)
+size = Vector2(64, 100)
 
 [node name="Echidna" type="Control"]
 physics_interpolation_mode = 0

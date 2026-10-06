@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://de6pth4lhbrx3"]
+[gd_scene load_steps=25 format=3 uid="uid://de6pth4lhbrx3"]
 
 [ext_resource type="Script" uid="uid://1ipdc2rptlx8" path="res://scripts/battle_scene.gd" id="1_3431j"]
 [ext_resource type="Texture2D" uid="uid://li4wknkj6rty" path="res://sprites/BlackandWhiteUI.png" id="1_pgqjp"]
@@ -9,6 +9,7 @@
 [ext_resource type="FontFile" uid="uid://d2i3pw07x727l" path="res://fonts/quaver.ttf" id="7_h847m"]
 [ext_resource type="Script" uid="uid://duc2q76og8doj" path="res://scripts/battle_terminal.gd" id="8_c8vew"]
 [ext_resource type="Script" uid="uid://irprssrpm5uk" path="res://scripts/battle_timer.gd" id="9_qk6qr"]
+[ext_resource type="Texture2D" uid="uid://caq7n4w7g60cr" path="res://sprites/uidasd.png" id="10_4xdy4"]
 
 [sub_resource type="Theme" id="Theme_elstw"]
 default_font = ExtResource("3_i5xfp")
@@ -197,6 +198,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -410,6 +412,7 @@ bbcode_enabled = true
 
 [node name="ColorRect4" type="ColorRect" parent="."]
 z_index = 1000
+z_as_relative = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -432,8 +435,9 @@ libraries = {
 [node name="Timer" type="Timer" parent="."]
 script = ExtResource("9_qk6qr")
 
-[node name="ColorRect6" type="ColorRect" parent="."]
+[node name="ColorRect6" type="TextureRect" parent="."]
 visible = false
+z_index = 99
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -446,6 +450,7 @@ offset_right = 152.0
 offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("10_4xdy4")
 
 [node name="HitMarkerParent" type="Control" parent="."]
 layout_mode = 1

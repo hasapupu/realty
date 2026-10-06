@@ -55,6 +55,8 @@ var c_tweens := []
 var c_index := 0
 var button_sfx_path := "res://audio/sfx/menu sfx.wav"
 @export var intro_timeout_length := .5
+@onready var hit_marker : PackedScene = preload("res://nodes/hit_marker.tscn")
+@onready var hit_marker_parent : Control = $HitMarkerParent
 
 func _ready():
 	#fadeout_node.self_modulate.a = 0
@@ -67,6 +69,7 @@ func _ready():
 	rhythm_notifier.bpm = enemy.music_bpm
 	#rhythm_notifier.beats(input_rate,true,0).connect(func(start_qte): start_qte())
 	#rhythm_notifier.beats(8,true,8).connect(damage_player)
+	$ColorRect6.visible = true
 	note_timer.connect("player_note",start_qte)
 	input_rate = enemy.input_rate
 	difficulty = enemy.difficulty
@@ -102,7 +105,6 @@ func _ready():
 	note_timer.start()
 	enemy_terminal.queue_write("* (" + enemy.enemy_name + [" showed up!", " appeared!"," attacks!" ].pick_random() + ")")
 	switch_panel(["Fight","Skill","Item","Block"])
-
 	audio.play()
 	#enemy_terminal.queue_write("Test dialogue.")
 
@@ -157,14 +159,17 @@ func _process(delta):
 				if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
 					SoundManager.play_sound(load(button_sfx_path))
 					switch_selection(selected_i - 1)
+					spawn_hit_marker(but_list[selected_i].get_text(),cursor.position)
 				#print(cursor.position.distance_to(cursor_final_pos))
 				c_index += 1
 			elif Input.is_action_just_pressed("ui_right"):
 				c_tweens[c_index].stop()
 				cursor.visible = false
 				if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
+					#spawn_hit_marker("Right")
 					SoundManager.play_sound(load(button_sfx_path))
 					switch_selection(selected_i + 1)
+					spawn_hit_marker(but_list[selected_i].get_text(), cursor.position)
 				#print(cursor.position.distance_to(cursor_final_pos))
 				c_index += 1
 			elif Input.is_action_just_pressed("ui_accept"):
@@ -172,6 +177,7 @@ func _process(delta):
 				cursor.visible = false
 				if !player_attacking:
 					if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
+						spawn_hit_marker(but_list[selected_i].get_text(), cursor.position)
 						if def_responses.has(but_list[selected_i].get_text().to_lower()):
 							SoundManager.play_sound(load(button_sfx_path))
 							(def_responses[but_list[selected_i].get_text().to_lower()] as Callable).call()
@@ -183,6 +189,7 @@ func _process(delta):
 				else:
 					player_attacking = false
 					damage_enemy(170 - (cursor.position.distance_to(cursor_final_pos)))
+					spawn_hit_marker(str(170 - (cursor.position.distance_to(cursor_final_pos))), cursor.position)
 					switch_panel(["Fight","Skill","Item","Block"])
 					c_index += 1
 	
@@ -291,3 +298,10 @@ func extract_notes():
 func stop_c_tween():
 	cursor.visible = false
 	c_index += 1
+	
+func spawn_hit_marker(label_text:String, m_pos: Vector2 = Vector2.ZERO):
+	var temp_marker : HitMarker = hit_marker.instantiate()
+	temp_marker.text = label_text
+	temp_marker.position = m_pos + Vector2(0, -10)
+	
+	$Control.add_child(temp_marker)

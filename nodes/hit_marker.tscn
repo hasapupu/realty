@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmwck0x4btsiy"]
+
+[ext_resource type="Script" uid="uid://36rugfm6d4nw" path="res://nodes/hit_marker.gd" id="1_dgfpa"]
+[ext_resource type="FontFile" uid="uid://d2i3pw07x727l" path="res://fonts/quaver.ttf" id="1_nnenc"]
+
+[node name="Label" type="Label"]
+z_index = 100
+offset_left = -33.0
+offset_top = -12.0
+offset_right = 36.0
+offset_bottom = 12.0
+pivot_offset = Vector2(33, 12)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_nnenc")
+theme_override_font_sizes/font_size = 8
+text = "*miss"
+script = ExtResource("1_dgfpa")

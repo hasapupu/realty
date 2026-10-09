@@ -288,11 +288,12 @@ func extract_notes():
 	var temp_notes := get_note_start_times(enemy.midi_map,enemy.music_bpm)
 	#print(temp_notes)
 	for i in temp_notes:
-		if i["note"] == 48:
+		print(i["note"])
+		if i["note"] == 98:
 			player_notes.append(i["time"] - input_rate)
-		elif i["note"] == 49:
+		elif i["note"] == 99:
 			enemy_attack_notes.append(i["time"] - input_rate)
-		elif i["note"] == 50:
+		elif i["note"] == 100:
 			enemy_fakeout_notes.append(i["time"] - input_rate)
 
 func stop_c_tween():

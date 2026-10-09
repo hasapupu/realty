@@ -303,5 +303,4 @@ func spawn_hit_marker(label_text:String, m_pos: Vector2 = Vector2.ZERO):
 	var temp_marker : HitMarker = hit_marker.instantiate()
 	temp_marker.text = label_text
 	temp_marker.position = m_pos + Vector2(0, -10)
-	
 	$Control.add_child(temp_marker)

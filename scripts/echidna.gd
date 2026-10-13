@@ -2,7 +2,7 @@ class_name Echidna extends Control
 
 @export var enemy_name := "Test Enemy"
 @export var enemy_music_path := "res://audio/music/combative dance.wav"
-@export var hp := 100
+@export var hp := 1000
 @export var atk := 10
 @export var custom_responses := {}
 @export var music_bpm := 120

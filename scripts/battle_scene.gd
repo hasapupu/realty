@@ -57,8 +57,17 @@ var button_sfx_path := "res://audio/sfx/menu sfx.wav"
 @export var intro_timeout_length := .5
 @onready var hit_marker : PackedScene = preload("res://nodes/hit_marker.tscn")
 @onready var hit_marker_parent : Control = $HitMarkerParent
+var cs : CameraShake 
+@onready var shield_marker : TextureRect = $Control2/Label2/TextureRect
 
 func _ready():
+	$ColorRect6.visible = false
+	$Control2.visible = false
+	$HSlider.visible = false
+	$Control.visible = false
+	$NinePatchRect2.visible = false
+	$NinePatchRect.visible = false
+	$ColorRect.visible = false
 	#fadeout_node.self_modulate.a = 0
 	await get_tree().create_timer(intro_timeout_length).timeout
 	enemy.bs = self
@@ -160,6 +169,8 @@ func _process(delta):
 					SoundManager.play_sound(load(button_sfx_path))
 					switch_selection(selected_i - 1)
 					spawn_hit_marker(but_list[selected_i].get_text(),cursor.position)
+				else:
+					spawn_hit_marker("miss",cursor.position)
 				#print(cursor.position.distance_to(cursor_final_pos))
 				c_index += 1
 			elif Input.is_action_just_pressed("ui_right"):
@@ -170,6 +181,8 @@ func _process(delta):
 					SoundManager.play_sound(load(button_sfx_path))
 					switch_selection(selected_i + 1)
 					spawn_hit_marker(but_list[selected_i].get_text(), cursor.position)
+				else:
+					spawn_hit_marker("miss",cursor.position)
 				#print(cursor.position.distance_to(cursor_final_pos))
 				c_index += 1
 			elif Input.is_action_just_pressed("ui_accept"):
@@ -186,10 +199,12 @@ func _process(delta):
 							SoundManager.play_sound(load(button_sfx_path))
 							(enemy.p_act_dict[but_list[selected_i].get_text().to_lower()] as Callable).call()
 						c_index += 1
+					else:
+						spawn_hit_marker("miss",cursor.position)
 				else:
 					player_attacking = false
 					damage_enemy(170 - (cursor.position.distance_to(cursor_final_pos)))
-					spawn_hit_marker(str(170 - (cursor.position.distance_to(cursor_final_pos))), cursor.position)
+					spawn_hit_marker(str(170 - (cursor.position.distance_to(cursor_final_pos))), enemy.position)
 					switch_panel(["Fight","Skill","Item","Block"])
 					c_index += 1
 	
@@ -205,16 +220,19 @@ func attack():
 func block():
 	player_blocking = true
 	switch_panel(["Fight","Skill","Item","Block"])
+	SoundManager.play_sound(load("res://audio/sfx/armorup.wav"))
+	show_shield_icon(player_blocking)
 	
 func damage_player(bullshit:int = 1, amount:int = 100):
 	#print(amount)
 	if player_blocking:
 		player_blocking = false
+		show_shield_icon(player_blocking)
 	else:
+		cs.add_trauma(amount)
 		player_hp = player_hp - amount
 		player_hp_bar.value = player_hp
 		player_hp_text.text = str(player_max_hp) + "/" + str(player_hp)
-
 
 func show_inventory():
 	#print(inventory)
@@ -305,3 +323,10 @@ func spawn_hit_marker(label_text:String, m_pos: Vector2 = Vector2.ZERO):
 	temp_marker.text = label_text
 	temp_marker.position = m_pos + Vector2(0, -10)
 	$Control.add_child(temp_marker)
+
+func show_shield_icon(shield_up:bool):
+	var sh_path = "res://nodes/shield_down.tscn"
+	if shield_up:
+		sh_path = "res://nodes/shield_up.tscn"
+	var temp_icon: TextureRect = load(sh_path).instantiate()
+	add_child(temp_icon)

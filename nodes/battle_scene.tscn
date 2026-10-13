@@ -300,7 +300,6 @@ offset_bottom = 123.92
 color = Color(0, 0, 0, 1)
 
 [node name="Control2" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -330,9 +329,9 @@ vertical_alignment = 1
 [node name="Label2" type="Label" parent="Control2"]
 z_index = 19
 layout_mode = 0
-offset_left = 21.0
+offset_left = 26.0
 offset_top = 144.0
-offset_right = 130.0
+offset_right = 135.0
 offset_bottom = 164.0
 pivot_offset = Vector2(20, 10)
 theme_override_fonts/font = ExtResource("7_h847m")

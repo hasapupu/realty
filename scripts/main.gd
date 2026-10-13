@@ -63,6 +63,7 @@ func initiate_battle_sequence(enemy: Echidna):
 	bs_inst.player_hp = player.hp
 	bs_inst.inventory = player.inventory
 	bs_inst.inventory.append(load("res://items/test_item.tres") as Item)
+	bs_inst.cs = player.camera.get_node("CameraShake")
 
 	battle_parent.add_child(bs_inst)
 

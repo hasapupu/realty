@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbuubtpcyj42i"]
+
+[ext_resource type="Texture2D" uid="uid://cl4oijixo28dj" path="res://sprites/shieldgangdown.png" id="1_pwb34"]
+[ext_resource type="Script" uid="uid://dy25d6ypwmjo3" path="res://scripts/shield_popup.gd" id="2_8nn7v"]
+
+[node name="TextureRect" type="TextureRect"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(19, 21)
+texture = ExtResource("1_pwb34")
+script = ExtResource("2_8nn7v")

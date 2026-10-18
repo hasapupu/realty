@@ -35,12 +35,12 @@ var player_hp:int:
 			#print(value)
 			player_hp = value
 @onready var fadeout_node:ColorRect = $ColorRect4
-@onready var player_hp_bar:Slider = $Control/HSlider
+@onready var player_hp_bar:ProgressBar = $Control/HSlider
 @onready var player_hp_text:Label = $Control/Label3
 @onready var hint_terminal:Label = $Control/Label5
 var hint_dict:={"fight":"Attack enemy","skill":"Attempt to convince enemy","item":"Open inventory","block":"Block next hit","test item":"Heals 10 hp"}
 @onready var enemy_name_label:Label = $Control2/Label
-@onready var enemy_health_bar:Slider = $HSlider
+@onready var enemy_health_bar:ProgressBar = $HSlider
 @onready var enemy_health_label:Label = $HSlider/Label
 @onready var enemy_max_health:int = enemy.hp
 @onready var enemy_terminal:EnemyTerminal = $NinePatchRect2
@@ -60,6 +60,7 @@ var button_sfx_path := "res://audio/sfx/menu sfx.wav"
 var cs : CameraShake 
 @onready var shield_marker : TextureRect = $Control2/Label2/TextureRect
 var enemy_pos = Vector2(100,30) #magic number bc I hate UI coords
+@onready var attack_shields := [$TextureRect,$TextureRect2]
 
 func _ready():
 	$ColorRect6.visible = false
@@ -205,7 +206,7 @@ func _process(delta):
 				else:
 					player_attacking = false
 					damage_enemy(170 - (cursor.position.distance_to(cursor_final_pos)))
-					spawn_hit_marker(str(170 - (cursor.position.distance_to(cursor_final_pos))), enemy_pos) #HARDCODED MAGIC NUMBERS YAAAAAYYYYY
+					spawn_hit_marker(str(int(170 - (cursor.position.distance_to(cursor_final_pos)))), enemy_pos) #HARDCODED MAGIC NUMBERS YAAAAAYYYYY
 					switch_panel(["Fight","Skill","Item","Block"])
 					c_index += 1
 	
@@ -336,5 +337,26 @@ func show_shield_icon(shield_up:bool):
 	add_child(temp_icon)
 	
 func play_attack_anim():
+	play_attack_shields()
+
+func play_attack_shields():
+	var a_shields_def_pos := []
+	for i:NinePatchRect in attack_shields:
+		i.position.y = $EnemyPos.position.y
+		a_shields_def_pos.append(Vector2(i.position.x,i.position.y))
+	var as_tween = get_tree().create_tween()
+	as_tween.set_loops(1)
+	as_tween.set_parallel(true)
+	for i:NinePatchRect in attack_shields:
+		as_tween.tween_property(i,"position",$EnemyPos.position - Vector2(i.pivot_offset.x,0),.2)
+	as_tween.play()
+	await as_tween.finished
+	#print("fin")
 	var blink_tween : Tween = get_tree().create_tween()
-	blink_tween.tween_property((enemy.get_node("Sprite2D") as TextureRect).material, "shader_parameter/time",1,1)
+	blink_tween.tween_property((enemy.get_node("Sprite2D") as TextureRect).material, "shader_parameter/time",1,1.0)
+	await blink_tween.finished
+	#print(((enemy.get_node("Sprite2D") as TextureRect).material as ShaderMaterial).get_shader_parameter("time"))
+	((enemy.get_node("Sprite2D") as TextureRect).material as ShaderMaterial).set_shader_parameter("time",0.0)
+	await get_tree().create_timer(.5).timeout
+	for i in range(attack_shields.size()):
+		attack_shields[i].position = a_shields_def_pos[i]

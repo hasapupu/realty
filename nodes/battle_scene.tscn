@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://de6pth4lhbrx3"]
+[gd_scene load_steps=21 format=3 uid="uid://de6pth4lhbrx3"]
 
 [ext_resource type="Script" uid="uid://1ipdc2rptlx8" path="res://scripts/battle_scene.gd" id="1_3431j"]
 [ext_resource type="Texture2D" uid="uid://li4wknkj6rty" path="res://sprites/BlackandWhiteUI.png" id="1_pgqjp"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://duc2q76og8doj" path="res://scripts/battle_terminal.gd" id="8_c8vew"]
 [ext_resource type="Script" uid="uid://irprssrpm5uk" path="res://scripts/battle_timer.gd" id="9_qk6qr"]
 [ext_resource type="Texture2D" uid="uid://caq7n4w7g60cr" path="res://sprites/uidasd.png" id="10_4xdy4"]
+[ext_resource type="Texture2D" uid="uid://dg8yv6j662w7m" path="res://sprites/shieldsatlas.png" id="11_albts"]
 
 [sub_resource type="Theme" id="Theme_elstw"]
 default_font = ExtResource("3_i5xfp")
@@ -31,25 +32,23 @@ shader_parameter/color_high = Color(1, 1, 1, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c8vew"]
 shader = ExtResource("5_ncinl")
 
-[sub_resource type="ImageTexture" id="ImageTexture_pvnho"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_albts"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="ImageTexture" id="ImageTexture_h847m"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3att"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="ImageTexture" id="ImageTexture_c8vew"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_qk6qr"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_4xdy4"]
-color = Color(1, 1, 1, 1)
-thickness = 8
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_albts"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3att"]
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_h847m"]
-color = Color(1, 1, 1, 1)
-thickness = 8
+[sub_resource type="Theme" id="Theme_albts"]
 
 [sub_resource type="Animation" id="Animation_qk6qr"]
 length = 0.001
@@ -198,7 +197,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -229,22 +227,16 @@ offset_top = 157.175
 offset_right = 53.3031
 offset_bottom = 159.175
 
-[node name="HSlider" type="HSlider" parent="Control"]
+[node name="HSlider" type="ProgressBar" parent="Control"]
 z_index = 10
 layout_mode = 0
 offset_left = 48.0
-offset_top = 159.0
+offset_top = 164.0
 offset_right = 187.0
-offset_bottom = 175.0
-theme_override_icons/grabber = SubResource("ImageTexture_pvnho")
-theme_override_icons/grabber_highlight = SubResource("ImageTexture_h847m")
-theme_override_icons/grabber_disabled = SubResource("ImageTexture_c8vew")
-theme_override_icons/tick = SubResource("ImageTexture_qk6qr")
-theme_override_styles/slider = SubResource("StyleBoxLine_4xdy4")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_albts")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_g3att")
-editable = false
-scrollable = false
+offset_bottom = 171.0
+theme_override_styles/background = SubResource("StyleBoxFlat_albts")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g3att")
+show_percentage = false
 
 [node name="Label2" type="Label" parent="Control"]
 z_index = 10
@@ -340,8 +332,7 @@ text = "The Hero"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSlider" type="HSlider" parent="."]
-visible = false
+[node name="HSlider" type="ProgressBar" parent="."]
 z_index = 10
 layout_mode = 1
 anchors_preset = 8
@@ -350,27 +341,24 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -129.0
-offset_top = -102.0
+offset_top = -101.0
 offset_right = -44.0
-offset_bottom = -86.0
+offset_bottom = -94.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_icons/grabber = SubResource("ImageTexture_pvnho")
-theme_override_icons/grabber_highlight = SubResource("ImageTexture_h847m")
-theme_override_icons/grabber_disabled = SubResource("ImageTexture_c8vew")
-theme_override_icons/tick = SubResource("ImageTexture_qk6qr")
-theme_override_styles/slider = SubResource("StyleBoxLine_h847m")
-theme_override_styles/grabber_area = SubResource("StyleBoxEmpty_albts")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxEmpty_g3att")
-editable = false
-scrollable = false
+theme = SubResource("Theme_albts")
+theme_override_styles/background = SubResource("StyleBoxFlat_albts")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g3att")
+step = 0.0
+value = 40.82
+show_percentage = false
 
 [node name="Label" type="Label" parent="HSlider"]
 layout_mode = 0
 offset_left = -26.0
-offset_top = -3.0
+offset_top = -8.0
 offset_right = 60.0
-offset_bottom = 20.0
+offset_bottom = 15.0
 pivot_offset = Vector2(0, 11)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("3_i5xfp")
@@ -464,5 +452,41 @@ offset_right = 160.0
 offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="NinePatchRect" parent="."]
+z_index = 4096
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -98.0
+offset_right = -160.0
+offset_bottom = -52.0
+pivot_offset = Vector2(45, 23)
+texture = ExtResource("11_albts")
+region_rect = Rect2(1, 51, 46, 46)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
+
+[node name="TextureRect2" type="NinePatchRect" parent="."]
+z_index = 4096
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 162.0
+offset_top = -98.0
+offset_right = 209.0
+offset_bottom = -52.0
+pivot_offset = Vector2(1, 23)
+texture = ExtResource("11_albts")
+region_rect = Rect2(1, 0, 47, 45)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 2
 
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

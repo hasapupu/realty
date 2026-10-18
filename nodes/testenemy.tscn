@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gekmu"]
 shader = ExtResource("3_jo6k1")
 shader_parameter/end_time = 1.0
-shader_parameter/start_freq = 1.0
+shader_parameter/start_freq = 0.5
 shader_parameter/end_freq = 10.0
 shader_parameter/time = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
@@ -35,4 +35,7 @@ metadata/_custom_type_script = "uid://vaawwo8pvqth"
 z_index = 100
 material = SubResource("ShaderMaterial_gekmu")
 layout_mode = 0
+offset_left = 18.0
+offset_right = 88.0
+offset_bottom = 100.0
 texture = ExtResource("3_q0xkq")

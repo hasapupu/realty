@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dy25d6ypwmjo3" path="res://scripts/shield_popup.gd" id="2_8nn7v"]
 
 [node name="TextureRect" type="TextureRect"]
-anchors_preset = -1
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

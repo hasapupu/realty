@@ -336,10 +336,14 @@ func show_shield_icon(shield_up:bool):
 	var temp_icon: TextureRect = load(sh_path).instantiate()
 	add_child(temp_icon)
 	
-func play_attack_anim():
-	play_attack_shields()
+func play_attack_blink():
+	var blink_tween : Tween = get_tree().create_tween()
+	blink_tween.tween_property((enemy.get_node("Sprite2D") as TextureRect).material, "shader_parameter/time",1,1.0)
+	await blink_tween.finished
+	((enemy.get_node("Sprite2D") as TextureRect).material as ShaderMaterial).set_shader_parameter("time",0.0)
 
-func play_attack_shields():
+
+func play_attack_anim():
 	var a_shields_def_pos := []
 	for i:NinePatchRect in attack_shields:
 		i.position.y = $EnemyPos.position.y
@@ -352,11 +356,8 @@ func play_attack_shields():
 	as_tween.play()
 	await as_tween.finished
 	#print("fin")
-	var blink_tween : Tween = get_tree().create_tween()
-	blink_tween.tween_property((enemy.get_node("Sprite2D") as TextureRect).material, "shader_parameter/time",1,1.0)
-	await blink_tween.finished
+	play_attack_blink()
 	#print(((enemy.get_node("Sprite2D") as TextureRect).material as ShaderMaterial).get_shader_parameter("time"))
-	((enemy.get_node("Sprite2D") as TextureRect).material as ShaderMaterial).set_shader_parameter("time",0.0)
-	await get_tree().create_timer(.5).timeout
+	await get_tree().create_timer(.05).timeout
 	for i in range(attack_shields.size()):
 		attack_shields[i].position = a_shields_def_pos[i]

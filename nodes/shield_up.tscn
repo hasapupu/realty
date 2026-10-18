@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dy25d6ypwmjo3" path="res://scripts/shield_popup.gd" id="2_4aucm"]
 
 [node name="TextureRect" type="TextureRect"]
-z_index = 10
 offset_left = 140.0
 offset_top = 100.0
 offset_right = 180.0

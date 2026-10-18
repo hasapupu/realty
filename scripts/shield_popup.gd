@@ -5,5 +5,5 @@ func _ready() -> void:
 	var tween_uno = get_tree().create_tween()
 	tween_uno.tween_property(self, "scale",Vector2(4, 4),.4).set_trans(Tween.TRANS_QUAD)
 	await tween_uno.finished
-	await get_tree().create_timer(.1).timeout
+	await get_tree().create_timer(.5).timeout
 	queue_free()

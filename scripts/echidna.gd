@@ -16,6 +16,7 @@ var bs:BattleSequence
 signal spared
 signal died
 var test_points := 0
+@onready var anim_player : AnimationPlayer = $AnimationPlayer
 
 func test():
 	test_points += 1

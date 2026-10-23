@@ -63,8 +63,10 @@ var cs : CameraShake
 @onready var shield_marker : TextureRect = $Control2/Label2/TextureRect
 var enemy_pos = Vector2(100,30) #magic number bc I hate UI coords
 @onready var attack_shields := [$TextureRect,$TextureRect2]
+@onready var enemy_attack_vfx_anim : AnimationPlayer = $TextureRect3/vfx_anim
 
 func _ready():
+	$TextureRect3.texture = null
 	$ColorRect6.visible = false
 	$Control2.visible = false
 	$HSlider.visible = false

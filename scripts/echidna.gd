@@ -33,4 +33,7 @@ func windup():
 
 func attack():
 	anim_player.play("attack")
+	await anim_player.animation_finished
+	bs.enemy_attack_vfx_anim.play("attack_1")
+	await bs.enemy_attack_vfx_anim.animation_finished
 	bs.damage_player(0, 10)

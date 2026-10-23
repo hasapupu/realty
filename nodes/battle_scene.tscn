@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://de6pth4lhbrx3"]
+[gd_scene load_steps=37 format=3 uid="uid://de6pth4lhbrx3"]
 
 [ext_resource type="Script" uid="uid://1ipdc2rptlx8" path="res://scripts/battle_scene.gd" id="1_3431j"]
 [ext_resource type="Texture2D" uid="uid://li4wknkj6rty" path="res://sprites/BlackandWhiteUI.png" id="1_pgqjp"]
@@ -11,6 +11,19 @@
 [ext_resource type="Script" uid="uid://irprssrpm5uk" path="res://scripts/battle_timer.gd" id="9_qk6qr"]
 [ext_resource type="Texture2D" uid="uid://caq7n4w7g60cr" path="res://sprites/uidasd.png" id="10_4xdy4"]
 [ext_resource type="Texture2D" uid="uid://dg8yv6j662w7m" path="res://sprites/shieldsatlas.png" id="11_albts"]
+[ext_resource type="Texture2D" uid="uid://o7fn3dmotllm" path="res://sprites/attack_1/attack_1.png" id="12_ppnjv"]
+[ext_resource type="Texture2D" uid="uid://n0rchloc8ah4" path="res://sprites/attack_1/attack_2.png" id="13_gvrxx"]
+[ext_resource type="Texture2D" uid="uid://bqmdoutihwt11" path="res://sprites/attack_1/attack_3.png" id="14_rsipq"]
+[ext_resource type="Texture2D" uid="uid://4du3mkvnmp4y" path="res://sprites/attack_1/attack_4.png" id="15_c0qp8"]
+[ext_resource type="Texture2D" uid="uid://bl46abf7g5am4" path="res://sprites/attack_1/attack_5.png" id="16_imgsx"]
+[ext_resource type="Texture2D" uid="uid://dyiksna3grbh1" path="res://sprites/attack_1/attack_6.png" id="17_txnih"]
+[ext_resource type="Texture2D" uid="uid://cm6jgl32sw43t" path="res://sprites/attack_1/attack_7.png" id="18_753bg"]
+[ext_resource type="Texture2D" uid="uid://ciwkcs5hjtf2u" path="res://sprites/attack_1/attack_8.png" id="19_2ta1o"]
+[ext_resource type="Texture2D" uid="uid://cjkcpnmdckn0y" path="res://sprites/attack_1/attack_9.png" id="20_l1ax4"]
+[ext_resource type="Texture2D" uid="uid://b0auy0wyvkjfi" path="res://sprites/attack_1/attack_10.png" id="21_i8cm6"]
+[ext_resource type="Texture2D" uid="uid://r3spotkwngay" path="res://sprites/attack_1/attack_11.png" id="22_xgdl5"]
+[ext_resource type="Texture2D" uid="uid://va8t3aawi6gh" path="res://sprites/attack_1/attack_12.png" id="23_r3e6l"]
+[ext_resource type="Texture2D" uid="uid://c72qehqvwyljr" path="res://sprites/attack_1/attack_13.png" id="24_74pj4"]
 
 [sub_resource type="Theme" id="Theme_elstw"]
 default_font = ExtResource("3_i5xfp")
@@ -85,6 +98,43 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_qk6qr"),
 &"fade_out": SubResource("Animation_c8vew")
+}
+
+[sub_resource type="Animation" id="Animation_5jev2"]
+resource_name = "attack_1"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.483333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, ExtResource("12_ppnjv"), ExtResource("13_gvrxx"), ExtResource("14_rsipq"), ExtResource("15_c0qp8"), ExtResource("16_imgsx"), ExtResource("17_txnih"), ExtResource("18_753bg"), ExtResource("19_2ta1o"), ExtResource("20_l1ax4"), ExtResource("21_i8cm6"), ExtResource("22_xgdl5"), ExtResource("23_r3e6l"), ExtResource("24_74pj4"), null]
+}
+
+[sub_resource type="Animation" id="Animation_344mx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect3:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_ppnjv")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x18k5"]
+_data = {
+&"RESET": SubResource("Animation_344mx"),
+&"attack_1": SubResource("Animation_5jev2")
 }
 
 [node name="Control" type="Control"]
@@ -488,5 +538,27 @@ texture = ExtResource("11_albts")
 region_rect = Rect2(1, 0, 47, 45)
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 2
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+z_index = 1001
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_ppnjv")
+
+[node name="vfx_anim" type="AnimationPlayer" parent="TextureRect3"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_x18k5")
+}
 
 [connection signal="timeout" from="Timer" to="Timer" method="_on_timeout"]

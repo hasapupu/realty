@@ -26,3 +26,11 @@ func test():
 		bs.switch_panel(["Fight","Skill","Item","Block"])
 	else:
 		spared.emit()
+		
+func windup():
+	anim_player.play("windup")
+	bs.damage_player(0, 10)
+
+func attack():
+	anim_player.play("attack")
+	bs.damage_player(0, 10)

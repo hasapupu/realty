@@ -113,6 +113,8 @@ func _ready():
 	$ColorRect.visible = true
 	note_timer.bs = self
 	note_timer.wait_time = audio.stream.get_length()
+	note_timer.enemy_attack.connect(enemy.attack)
+	note_timer.enemy_attack.connect(enemy.windup)
 	note_timer.start()
 	enemy_terminal.queue_write("* (" + enemy.enemy_name + [" showed up!", " appeared!"," attacks!" ].pick_random() + ")")
 	switch_panel(["Fight","Skill","Item","Block"])

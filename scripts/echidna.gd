@@ -10,7 +10,7 @@ class_name Echidna extends Control
 @export var difficulty = 35
 @export var player_acts := ["Test Act"]
 @export var p_act_dict := {"test act": test}
-@export var midi_map : MidiData = preload("res://midi/generalbattletheme.mid")
+@export var midi_map : MidiData = preload("res://midi/midi_basic_enemy_map.mid")
 @export var talk_voice_path:= "res://audio/sfx/def_talkvoice.wav"
 var bs:BattleSequence
 signal spared
@@ -29,7 +29,7 @@ func test():
 		
 func windup():
 	anim_player.play("windup")
-	bs.damage_player(0, 10)
+	#bs.damage_player(0, 10)
 
 func attack():
 	anim_player.play("attack")

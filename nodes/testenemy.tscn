@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdlvtt1qdrwry"]
+[gd_scene load_steps=9 format=3 uid="uid://cdlvtt1qdrwry"]
 
 [ext_resource type="Script" uid="uid://vaawwo8pvqth" path="res://scripts/echidna.gd" id="1_k406k"]
-[ext_resource type="Resource" uid="uid://duls22ee36vw0" path="res://midi/midi_basic_enemy_map.mid" id="2_jo6k1"]
 [ext_resource type="Shader" uid="uid://c5kuc0qfvrhr2" path="res://scripts/blink.gdshader" id="3_jo6k1"]
 [ext_resource type="Texture2D" uid="uid://43wlnbuj1da2" path="res://sprites/the_follower.png" id="3_q0xkq"]
 
@@ -13,6 +12,21 @@ shader_parameter/end_freq = 10.0
 shader_parameter/time = 0.0
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 shader_parameter/blink_length = 0.5
+
+[sub_resource type="Animation" id="Animation_gekmu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_jo6k1"]
 resource_name = "attack"
@@ -28,21 +42,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(18, 0), Vector2(50, -41)]
-}
-
-[sub_resource type="Animation" id="Animation_gekmu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(18, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_tivdk"]
@@ -82,7 +81,6 @@ offset_bottom = -31.44
 script = ExtResource("1_k406k")
 music_bpm = 155
 input_rate = 2.0
-midi_map = ExtResource("2_jo6k1")
 metadata/_custom_type_script = "uid://vaawwo8pvqth"
 
 [node name="Sprite2D" type="TextureRect" parent="."]

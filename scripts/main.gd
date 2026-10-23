@@ -90,4 +90,6 @@ func battle_killed():
 	stop_battle_sequence()
 	
 func game_over():
+	battle_parent.get_child(0).process_mode = Node.PROCESS_MODE_DISABLED
+	print("niqr")
 	get_tree().change_scene_to_file("res://nodes/game_over.tscn")

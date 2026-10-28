@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ceoys12bdysnp"
+path="res://.godot/imported/backroom_mirror.dialogue-051b040110afad588b53bcb8013107cf.tres"
+
+[deps]
+
+source_file="res://dialogues/backroom_mirror.dialogue"
+dest_files=["res://.godot/imported/backroom_mirror.dialogue-051b040110afad588b53bcb8013107cf.tres"]
+
+[params]
+
+defaults=true

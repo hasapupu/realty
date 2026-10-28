@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://ce5shulaslh82"
+path="res://.godot/imported/backroom_pilldrobe.dialogue-c4549c6584ad45145635a792b0a3bb36.tres"
+
+[deps]
+
+source_file="res://dialogues/backroom_pilldrobe.dialogue"
+dest_files=["res://.godot/imported/backroom_pilldrobe.dialogue-c4549c6584ad45145635a792b0a3bb36.tres"]
+
+[params]
+
+defaults=true

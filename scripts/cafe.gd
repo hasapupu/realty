@@ -14,6 +14,11 @@ func _ready():
 		hide_poster()
 	if local_save.flags.has("obstacle"):
 		barrier.queue_free()
+		loverboy_npx.queue_free()
+		loverboy.position = Vector2(215,84)
+		loverboy.get_node("AnimationPlayer").play("look_up")
+		barista_npc.dialogue_path = "res://dialogues/cafe_confession.dialogue"
+		love_particles.visible = true
 	await get_tree().process_frame
 	player = $YSort/CharacterBody2D
 

@@ -1,0 +1,9 @@
+~ start
+A box.
+Seems it's full of backup equipment for the cafe.
+Make a coffee?
+- Make
+	do add_item("res://items/coffee.tres")
+	Coffee was added to your inventory.
+- Don't make
+=> END

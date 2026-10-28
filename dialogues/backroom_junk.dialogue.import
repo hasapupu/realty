@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dvhv38w6pqwtb"
+path="res://.godot/imported/backroom_junk.dialogue-ca1de12bf6b0c17ba67059bb2771a5a3.tres"
+
+[deps]
+
+source_file="res://dialogues/backroom_junk.dialogue"
+dest_files=["res://.godot/imported/backroom_junk.dialogue-ca1de12bf6b0c17ba67059bb2771a5a3.tres"]
+
+[params]
+
+defaults=true

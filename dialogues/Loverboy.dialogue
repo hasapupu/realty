@@ -5,6 +5,7 @@ if CurrScene.has_received_cutout == false:
 	Loverboy: I know I should approach her, but I'm just sooo conflicted!
 	Loverboy: Someone please help!
 else:
+	You gave him the flower cutout.
 	Loverboy: Waaaa, what is this???
 	Loverboy: Is this really for me?
 	Loverboy: Oh, thank you kind stranger.

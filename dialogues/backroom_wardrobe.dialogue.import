@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://337svmssel3f"
+path="res://.godot/imported/backroom_wardrobe.dialogue-1ef13dc427b28449b352842c12331861.tres"
+
+[deps]
+
+source_file="res://dialogues/backroom_wardrobe.dialogue"
+dest_files=["res://.godot/imported/backroom_wardrobe.dialogue-1ef13dc427b28449b352842c12331861.tres"]
+
+[params]
+
+defaults=true

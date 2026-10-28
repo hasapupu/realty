@@ -3,7 +3,7 @@ class_name CafeContext extends SceneContext
 @onready var overlay : TileMapLayer = $YSort/TileMapLayer4
 @onready var poster_npc = $NPCs/Intractable4
 @onready var loverboy = $YSort/Sprite2D13
-@onready var player:Player = $YSort/CharacterBody2D
+var player:Player 
 @onready var loverboy_npx = $NPCs/Intractable6
 @onready var barista_npc = $YSort/Sprite2D/Intractable
 @onready var love_particles = $Background/CPUParticles2D
@@ -14,6 +14,8 @@ func _ready():
 		hide_poster()
 	if local_save.flags.has("obstacle"):
 		barrier.queue_free()
+	await get_tree().process_frame
+	player = $YSort/CharacterBody2D
 
 func hide_poster():
 	overlay.visible = true

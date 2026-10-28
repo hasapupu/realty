@@ -27,12 +27,15 @@ func _ready():
 	player.inventory = savefile.player_inventory
 	curr_room.get_node("YSort").add_child(player)
 	player.position = savefile.player_pos
+	for i in curr_room.get_node("Exits").get_children():
+		i.connect("player_entered",load_overworld_room)
 	SoundManager.play_music(load(def_mus_path),1,"music")
 	SoundManager.set_music_volume(.4)
 	#initiate_battle_sequence(load("res://nodes/testenemy.tscn").instantiate())
 
 func load_overworld_room(new_room:OWRoom):
 	#player.camera.position_smoothing_enabled = false
+	#print("DASDFASD")
 	player.reparent(self)
 	if curr_room.save_name != "":
 		ResourceSaver.save(curr_room.local_save, "user://" + curr_room.save_name + ".tres")
@@ -47,7 +50,6 @@ func load_overworld_room(new_room:OWRoom):
 	SoundManager.set_music_volume(.4)
 	await get_tree().process_frame
 	player.reparent(curr_room.get_node("YSort"))
-	
 	for i in curr_room.get_node("Exits").get_children():
 		i.connect("player_entered",load_overworld_room)
 	player.position = new_room.player_spawn
@@ -63,9 +65,9 @@ func initiate_battle_sequence(enemy: Echidna):
 	bs_inst.player_hp = player.hp
 	bs_inst.inventory = player.inventory
 	bs_inst.inventory.append(load("res://items/test_item.tres") as Item)
-	bs_inst.cs = player.camera.get_node("CameraShake")
+	#bs_inst.cs = player.camera.get_node("CameraShake")
 
-	battle_parent.add_child(bs_inst)
+	battle_parent.get_node("BattleShaker").add_child(bs_inst)
 
 	player.camera.reset_smoothing()
 	await get_tree().process_frame
@@ -91,5 +93,4 @@ func battle_killed():
 	
 func game_over():
 	battle_parent.get_child(0).process_mode = Node.PROCESS_MODE_DISABLED
-	print("niqr")
 	get_tree().change_scene_to_file("res://nodes/game_over.tscn")

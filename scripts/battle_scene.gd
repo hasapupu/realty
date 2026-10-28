@@ -59,7 +59,7 @@ var button_sfx_path := "res://audio/sfx/menu sfx.wav"
 @export var intro_timeout_length := .5
 @onready var hit_marker : PackedScene = preload("res://nodes/hit_marker.tscn")
 @onready var hit_marker_parent : Control = $HitMarkerParent
-var cs : CameraShake 
+@onready var cs : BattleShaker = get_parent()
 @onready var shield_marker : TextureRect = $Control2/Label2/TextureRect
 var enemy_pos = Vector2(100,30) #magic number bc I hate UI coords
 @onready var attack_shields := [$TextureRect,$TextureRect2]
@@ -234,7 +234,7 @@ func block():
 func damage_player(bullshit:int = 1, amount:int = 100):
 	#print("amount")
 	SoundManager.play_sound(load("res://audio/sfx/player_hit.wav"))
-	cs.add_trauma(amount)
+	cs.camera_shake()
 	if player_blocking:
 		player_blocking = false
 		show_shield_icon(player_blocking)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://daxontw6rye0e"]
+
+[ext_resource type="Script" uid="uid://7goi6fgdi5q7" path="res://scripts/item.gd" id="1_ykdpi"]
+
+[resource]
+script = ExtResource("1_ykdpi")
+name = "L Coffee"
+heal_amount = -1
+item_use_text_path = "res://dialogues/heal_item.dialogue"
+metadata/_custom_type_script = "uid://7goi6fgdi5q7"

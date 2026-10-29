@@ -126,4 +126,12 @@ func _on_item_list_item_activated(index: int) -> void:
 	DialogueManager.show_dialogue_balloon(load(inventory[index].item_use_text_path),"start",[self, get_parent().get_parent()])
 	await DialogueManager.dialogue_ended
 	hp += inventory[index].heal_amount
+	if curr_item.absorbed:
+		remove_item(curr_item.name)
 	active = false
+	
+func has_item(i_name:String) -> bool:
+	for i: Item in inventory:
+		if i.name == i_name:
+			return true
+	return false

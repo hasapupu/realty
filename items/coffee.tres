@@ -6,5 +6,5 @@
 script = ExtResource("1_823hb")
 name = "Coffee"
 heal_amount = 1
-item_use_text_path = "res://dialogues/default_item.dialogue"
+item_use_text_path = "res://dialogues/heal_item.dialogue"
 metadata/_custom_type_script = "uid://7goi6fgdi5q7"

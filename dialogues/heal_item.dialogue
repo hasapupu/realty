@@ -1,0 +1,4 @@
+~ start
+You use {{curr_item.name}}...
+You restored {{curr_item.heal_amount}}.
+=> END

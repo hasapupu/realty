@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bg5m8m51ewcx5"]
+[gd_scene load_steps=7 format=3 uid="uid://bg5m8m51ewcx5"]
 
 [ext_resource type="Shader" uid="uid://cr3ynrq25xc28" path="res://shaders/recolor.gdshader" id="1_pn61q"]
+[ext_resource type="Script" uid="uid://dml3g4oflhhio" path="res://scripts/rando_8.gd" id="2_6bkqk"]
 [ext_resource type="Texture2D" uid="uid://be52ugbx0k2q4" path="res://sprites/Rando4/Rando4_idle.png" id="2_pn61q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kudjh"]
@@ -14,16 +15,26 @@ shader_parameter/shader_active = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pn61q"]
 size = Vector2(104, 8)
 
-[node name="Sprite2D" type="Sprite2D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gkij7"]
+shader = ExtResource("1_pn61q")
+shader_parameter/target_colors = PackedColorArray(0.996078, 0.639216, 0.8, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/replace_colors = PackedColorArray(1, 0.878431, 0.741176, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/color_count = 1
+shader_parameter/tolerance = 0.01
+shader_parameter/shader_active = true
+
+[node name="Sprite2D" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_kudjh")
 position = Vector2(0, 14)
-texture = ExtResource("2_pn61q")
-offset = Vector2(0, -14)
-region_enabled = true
-region_rect = Rect2(24, 83, 21, 29)
+script = ExtResource("2_6bkqk")
+metadata/_custom_type_script = "uid://dml3g4oflhhio"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_pn61q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_gkij7")
+texture = ExtResource("2_pn61q")
+region_enabled = true
+region_rect = Rect2(24, 83, 21, 29)

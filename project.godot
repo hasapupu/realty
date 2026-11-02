@@ -77,10 +77,6 @@ inventory={
 ]
 }
 
-[internationalization]
-
-locale/translations_pot_files=PackedStringArray("res://dialogues/backroom_box.dialogue", "res://dialogues/backroom_mirror.dialogue", "res://dialogues/backroom_pilldrobe.dialogue", "res://dialogues/backroom_trash.dialogue", "res://dialogues/backroom_wardrobe.dialogue", "res://dialogues/cafe_bookstash.dialogue", "res://dialogues/cafe_energydrink.dialogue", "res://dialogues/cafe_heroine.dialogue", "res://dialogues/cafe_plant.dialogue", "res://dialogues/cafe_poster.dialogue", "res://dialogues/cafe_scissorboy.dialogue", "res://dialogues/cafe_tome.dialogue", "res://dialogues/default_item.dialogue", "res://dialogues/heal_item.dialogue", "res://dialogues/Loverboy.dialogue")
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

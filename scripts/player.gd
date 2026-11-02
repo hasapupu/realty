@@ -99,7 +99,7 @@ func _physics_process(delta: float) -> void:
 	if raycast.is_colliding():
 		if raycast.get_collider() is Intractable:
 			npc = raycast.get_collider()
-	if raycast.is_colliding() and !active and npc:
+	if raycast.is_colliding() and !active:
 		if Input.is_action_just_pressed("ui_accept") or npc.forced:
 			DialogueManager.show_dialogue_balloon(load(npc.dialogue_path),"start",[self, get_parent().get_parent()])
 			active = true

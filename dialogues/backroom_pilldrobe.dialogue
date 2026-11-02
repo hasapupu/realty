@@ -2,10 +2,10 @@
 A drawer.
 Among many other things, there is a box of laxatives.
 if has_item("Coffee"):
-	Put laxatives in coffee?
+	Should I put laxatives in coffee?
 	- Put 
 		do remove_item("Coffee")
 		do add_item("res://items/laxative_coffee.tres")
-		L Coffee was added to your inventory.
+		I added L Coffee to my inventory.
 	- Don't
 => END

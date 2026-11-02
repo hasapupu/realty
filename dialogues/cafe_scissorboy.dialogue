@@ -2,9 +2,9 @@
 $> CurrScene.has_received_scissors = local_save.flags.has("scissors") 
 if CurrScene.has_received_scissors == false:
 	Reckless kid: I LOVE playing with scissors!!!
-	This seems dangerous. Will you take away the scissors?
+	This seems dangerous. Should I take away the scissors?
 	- Be responsible 
-		You took away the scissors.
+		I take away the scissors.
 		Defused kid: Aw man.
 		$> CurrScene.has_received_scissors = true
 		$> local_save.flags["scissors"] = true

@@ -19,6 +19,7 @@ func _process(delta: float) -> void:
 			player_note.emit(bs.enemy.input_rate)
 			player_index += 1
 		if bs.enemy_attack_notes.size() > 0 and bs.enemy_attack_notes[e_attack_index] <= curr_time:
+			print(bs.enemy_attack_notes[e_attack_index])
 			enemy_attack.emit()
 			e_attack_index += 1
 		if bs.enemy_fakeout_notes.size() > 0 and bs.enemy_fakeout_notes[e_fakeout_index] <= curr_time:

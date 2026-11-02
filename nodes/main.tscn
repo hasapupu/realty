@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdji77d84p6q6"]
+[gd_scene load_steps=3 format=3 uid="uid://cdji77d84p6q6"]
 
 [ext_resource type="Script" uid="uid://dpb0dj2qugb57" path="res://scripts/main.gd" id="1_a3ry3"]
+[ext_resource type="Script" uid="uid://coyt5u851bv1r" path="res://scripts/battle_shaker.gd" id="2_a3ry3"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_a3ry3")
@@ -10,3 +11,13 @@ process_mode = 1
 y_sort_enabled = true
 
 [node name="battleParent" type="CanvasLayer" parent="."]
+
+[node name="BattleShaker" type="Control" parent="battleParent"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_a3ry3")
+metadata/_custom_type_script = "uid://coyt5u851bv1r"

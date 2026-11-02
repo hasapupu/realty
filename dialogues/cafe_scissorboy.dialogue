@@ -1,4 +1,5 @@
 ~ start
+$> CurrScene.has_received_scissors = local_save.flags.has("scissors") 
 if CurrScene.has_received_scissors == false:
 	Reckless kid: I LOVE playing with scissors!!!
 	This seems dangerous. Will you take away the scissors?
@@ -6,9 +7,10 @@ if CurrScene.has_received_scissors == false:
 		You took away the scissors.
 		Defused kid: Aw man.
 		$> CurrScene.has_received_scissors = true
+		$> local_save.flags["scissors"] = true
 		do add_item("res://items/scissors.tres")
 	- Endanger child
 		The recklessnes continues.
 else:
-	Defused kid: Everything is boring now.
+	Kid: Cry not for it's over, rejoice for it happened.
 => END

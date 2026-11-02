@@ -17,7 +17,8 @@ var difficulty := 30 #0 es 170 kozti szam, minel kisebb, annal nehezebb
 var c_active := false:
 	set(value):
 		if value == false:
-			c_tween.stop()
+			#c_tween.stop()
+			pass
 		c_active = value
 var c_tween:Tween #c_ stands for cursor always in this script atleast
 var input_rate:float = 4.0#in beats
@@ -29,8 +30,9 @@ var player_hp:int:
 	set(value):
 		if value > player_max_hp:
 			player_hp = player_max_hp
-		elif value<=0:
+		elif value<=0 and player_hp > 0:
 			kill_player()
+			player_hp = value
 		else:
 			#print(value)
 			player_hp = value
@@ -57,12 +59,14 @@ var button_sfx_path := "res://audio/sfx/menu sfx.wav"
 @export var intro_timeout_length := .5
 @onready var hit_marker : PackedScene = preload("res://nodes/hit_marker.tscn")
 @onready var hit_marker_parent : Control = $HitMarkerParent
-var cs : CameraShake 
+@onready var cs : BattleShaker = get_parent()
 @onready var shield_marker : TextureRect = $Control2/Label2/TextureRect
 var enemy_pos = Vector2(100,30) #magic number bc I hate UI coords
 @onready var attack_shields := [$TextureRect,$TextureRect2]
+@onready var enemy_attack_vfx_anim : AnimationPlayer = $TextureRect3/vfx_anim
 
 func _ready():
+	$TextureRect3.texture = null
 	$ColorRect6.visible = false
 	$Control2.visible = false
 	$HSlider.visible = false
@@ -113,6 +117,8 @@ func _ready():
 	$ColorRect.visible = true
 	note_timer.bs = self
 	note_timer.wait_time = audio.stream.get_length()
+	note_timer.enemy_attack.connect(enemy.attack)
+	note_timer.enemy_attack.connect(enemy.windup)
 	note_timer.start()
 	enemy_terminal.queue_write("* (" + enemy.enemy_name + [" showed up!", " appeared!"," attacks!" ].pick_random() + ")")
 	switch_panel(["Fight","Skill","Item","Block"])
@@ -226,13 +232,14 @@ func block():
 	show_shield_icon(player_blocking)
 	
 func damage_player(bullshit:int = 1, amount:int = 100):
-	#print(amount)
+	#print("amount")
 	SoundManager.play_sound(load("res://audio/sfx/player_hit.wav"))
+	cs.camera_shake()
 	if player_blocking:
 		player_blocking = false
 		show_shield_icon(player_blocking)
+		return
 	else:
-		cs.add_trauma(amount)
 		player_hp = player_hp - amount
 		player_hp_bar.value = player_hp
 		player_hp_text.text = str(player_max_hp) + "/" + str(player_hp)
@@ -269,12 +276,15 @@ func kill_player():
 	#c_tween.stop()
 	c_active = false
 	audio.stop()
+	note_timer.paused = true
+	for i:Tween in c_tweens:
+		i.stop()
 	#await get_tree().create_timer(1)
 	fadeout_anim.play("fade_out")
 	await  get_tree().process_frame
 	await  fadeout_anim.animation_finished
 	#print("aaaaaaa")
-	await get_tree().create_timer(1).tiemout
+	await get_tree().create_timer(1).timeout
 	player_died.emit()
 
 func get_note_start_times(midi_data: MidiData, bpm: float) -> Array[Dictionary]:
@@ -311,7 +321,7 @@ func extract_notes():
 	var temp_notes := get_note_start_times(enemy.midi_map,enemy.music_bpm)
 	#print(temp_notes)
 	for i in temp_notes:
-		print(i["note"])
+		#print(i["note"])
 		if i["note"] == 98:
 			player_notes.append(i["time"] - input_rate)
 		elif i["note"] == 99:

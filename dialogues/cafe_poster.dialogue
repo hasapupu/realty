@@ -8,7 +8,7 @@ if CurrScene.has_received_scissors:
 	- Use
 		You took down the poster, and cut out the flower with the scissors.
 		$> CurrScene.has_received_cutout = true
-		do add_item("res://items/scissors.tres")
+		do add_item("res://items/cutout.tres")
 		do hide_poster()
 	- Don't
 => END

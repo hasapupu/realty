@@ -1891,7 +1891,7 @@ position = Vector2(-152, 65)
 position = Vector2(-152, 81)
 
 [node name="Sprite2D5" parent="YSort" instance=ExtResource("9_axb1k")]
-position = Vector2(125, 16)
+position = Vector2(141, 3)
 
 [node name="Sprite2D6" parent="YSort" instance=ExtResource("10_c5o1k")]
 position = Vector2(102, 17)

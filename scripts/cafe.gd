@@ -8,6 +8,8 @@ var player:Player
 @onready var barista_npc = $YSort/Sprite2D/Intractable
 @onready var love_particles = $Background/CPUParticles2D
 @onready var barrier = $NPCs/Intractable18
+@onready var nav_unc = $YSort/CharacterBody2D
+@onready var unc = $YSort/Sprite2D5
 
 func _ready():
 	if local_save.flags.has("poster") and local_save.flags["poster"]:
@@ -45,3 +47,9 @@ func move_player(x,y):
 	await player.nav_to(x,y)
 	player.anim.play("idle_down")
 	player.in_cuts = false
+
+func switch_uncs():
+	unc.visible = false
+	unc.ProcessMode = PROCESS_MODE_DISABLED
+	nav_unc.visible = true
+	nav_unc.ProcessMode = PROCESS_MODE_ALWAYS

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://ygrx4347wq1c"]
+[gd_scene load_steps=65 format=4 uid="uid://ygrx4347wq1c"]
 
 [ext_resource type="Script" uid="uid://bsphwdskiix6s" path="res://scripts/cafe.gd" id="1_cs2r0"]
 [ext_resource type="Texture2D" uid="uid://ju4xkdkcdqd1" path="res://sprites/Bedroom Asset Pack 001.png" id="1_qaqna"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dd0svtey74v7y" path="res://nodes/rando8.tscn" id="17_7oaq4"]
 [ext_resource type="PackedScene" uid="uid://coi8acxkdap1y" path="res://nodes/rando9.tscn" id="18_g0bcl"]
 [ext_resource type="Script" uid="uid://kk4o8o7n7foi" path="res://scripts/interactable.gd" id="19_m2axw"]
+[ext_resource type="PackedScene" uid="uid://ck1q12sl3xs5l" path="res://nodes/nav_unc.tscn" id="20_m5f4e"]
 [ext_resource type="PackedScene" uid="uid://5easq2avroag" path="res://nodes/exit.tscn" id="21_kkpbd"]
 [ext_resource type="PackedScene" uid="uid://tnbsavwou10i" path="res://nodes/loveparticles.tscn" id="21_rgait"]
 [ext_resource type="Script" uid="uid://bfetnocwpi4i3" path="res://scripts/overworld_room.gd" id="22_cs2r0"]
@@ -1891,7 +1892,10 @@ position = Vector2(-152, 65)
 position = Vector2(-152, 81)
 
 [node name="Sprite2D5" parent="YSort" instance=ExtResource("9_axb1k")]
-position = Vector2(141, 3)
+position = Vector2(129, 3)
+
+[node name="StaticBody2D" parent="YSort/Sprite2D5" index="0"]
+position = Vector2(-26, 13)
 
 [node name="Sprite2D6" parent="YSort" instance=ExtResource("10_c5o1k")]
 position = Vector2(102, 17)
@@ -1925,6 +1929,11 @@ visible = false
 y_sort_enabled = true
 tile_map_data = PackedByteArray("AAABAPv/AAAOAAYAAAACAPv/AAAPAAYAAAABAPr/AAAOAAUAAAACAPr/AAAPAAUAAAA=")
 tile_set = SubResource("TileSet_kkpbd")
+
+[node name="CharacterBody2D" parent="YSort" instance=ExtResource("20_m5f4e")]
+process_mode = 4
+visible = false
+position = Vector2(129, 3)
 
 [node name="NPCs" type="Node2D" parent="."]
 
@@ -2099,9 +2108,9 @@ tile_set = SubResource("TileSet_sybi7")
 
 [node name="ColorRect" type="ColorRect" parent="Background"]
 z_index = -10
-offset_left = -871.0
+offset_left = -875.0
 offset_top = -407.0
-offset_right = 868.0
+offset_right = 864.0
 offset_bottom = 571.0
 color = Color(0, 0, 0, 1)
 

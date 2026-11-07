@@ -1930,7 +1930,7 @@ y_sort_enabled = true
 tile_map_data = PackedByteArray("AAABAPv/AAAOAAYAAAACAPv/AAAPAAYAAAABAPr/AAAOAAUAAAACAPr/AAAPAAUAAAA=")
 tile_set = SubResource("TileSet_kkpbd")
 
-[node name="CharacterBody2D" parent="YSort" instance=ExtResource("20_m5f4e")]
+[node name="CharacterBody2D2" parent="YSort" instance=ExtResource("20_m5f4e")]
 process_mode = 4
 visible = false
 position = Vector2(129, 3)

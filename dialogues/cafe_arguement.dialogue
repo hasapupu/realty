@@ -1,4 +1,5 @@
 ~ start
+do set_music("res://audio/music/awkward situtation.wav")
 if !has_item("Coffee") and !has_item("L Coffee"):
 	Old guy: How many times do I have to repeat myself?!
 	Old guy: I just want one black coffee!
@@ -9,12 +10,12 @@ if !has_item("Coffee") and !has_item("L Coffee"):
 	Old guy: One.
 	Old guy: Black.
 	Old guy: Coffee.
+	do set_music("res://audio/music/coffeeshop.wav")
 else:
 	Old guy: You people are so incompetent!
 	Old guy: Why won't you let me go behind the counter and let me make one for myself?!
 	Steph: Sir, that would violate several rules of conduct, I CANNOT let you do that.
 	Old guy: Hmpf.
-	
 	Old guy: !
 	Old guy: Heh, looks like this young gentleman beat me to it.
 	if has_item("L Coffee"):
@@ -24,4 +25,5 @@ else:
 		I give the old guy my Coffee.
 		do remove_item("Coffee")
 	Old guy: Thank you good sir!
+	do set_music("res://audio/music/coffeeshop.wav")
 => END

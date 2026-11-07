@@ -8,7 +8,7 @@ var player:Player
 @onready var barista_npc = $YSort/Sprite2D/Intractable
 @onready var love_particles = $Background/CPUParticles2D
 @onready var barrier = $NPCs/Intractable18
-@onready var nav_unc = $YSort/CharacterBody2D
+@onready var nav_unc = $YSort/CharacterBody2D2
 @onready var unc = $YSort/Sprite2D5
 
 func _ready():

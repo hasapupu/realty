@@ -19,6 +19,7 @@ var naving := false:
 		naving = value
 var nav_dir := Vector2.ZERO
 signal finished_naving
+
 func nav_to(x,y):
 	nav_agent.target_position = Vector2(x,y)
 	naving = true
@@ -87,6 +88,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		if inventory_node.visible == false:
 			if active == false:
+				SoundManager.play_ambient_sound(load("res://audio/sfx/menu sfx.wav"))
 				inventory_node.visible = true
 				active = true
 				var item_list:ItemList = inventory_node.get_node("NinePatchRect/ItemList")
@@ -100,7 +102,7 @@ func _physics_process(delta: float) -> void:
 		if raycast.get_collider() is Intractable:
 			npc = raycast.get_collider()
 	if raycast.is_colliding() and !active:
-		if Input.is_action_just_pressed("ui_accept") or npc.forced:
+		if npc and (Input.is_action_just_pressed("ui_accept") or npc.forced):
 			DialogueManager.show_dialogue_balloon(load(npc.dialogue_path),"start",[self, get_parent().get_parent()])
 			active = true
 			await DialogueManager.dialogue_ended

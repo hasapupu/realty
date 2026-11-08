@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ck1q12sl3xs5l"]
+[gd_scene load_steps=13 format=3 uid="uid://ck1q12sl3xs5l"]
 
 [ext_resource type="Script" uid="uid://dml3g4oflhhio" path="res://scripts/rando_8.gd" id="1_gxcur"]
 [ext_resource type="Shader" uid="uid://cr3ynrq25xc28" path="res://shaders/recolor.gdshader" id="2_0nbbt"]
@@ -16,9 +16,8 @@ shader_parameter/shader_active = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxcur"]
 size = Vector2(5, 4)
 
-[sub_resource type="Animation" id="Animation_gxcur"]
-resource_name = "idle"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_0nbbt"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -44,8 +43,9 @@ tracks/1/keys = {
 "values": [ExtResource("3_okoeg")]
 }
 
-[sub_resource type="Animation" id="Animation_0nbbt"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_gxcur"]
+resource_name = "idle"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -99,6 +99,34 @@ tracks/1/keys = {
 "values": [ExtResource("3_okoeg")]
 }
 
+[sub_resource type="Animation" id="Animation_g3tyh"]
+resource_name = "look_up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(24, 146, 17, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_0nbbt")]
+}
+
 [sub_resource type="Animation" id="Animation_1s8og"]
 resource_name = "walk_up"
 length = 1.2
@@ -133,15 +161,17 @@ _data = {
 &"RESET": SubResource("Animation_0nbbt"),
 &"idle": SubResource("Animation_gxcur"),
 &"look_down": SubResource("Animation_okoeg"),
+&"look_up": SubResource("Animation_g3tyh"),
 &"walk_up": SubResource("Animation_1s8og")
 }
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_gxcur")
-nav_speed = 10
+nav_speed = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_1s8og")
+position = Vector2(-0.5, -12)
 texture = ExtResource("3_okoeg")
 region_enabled = true
 region_rect = Rect2(24, 83, 21, 29)
@@ -153,11 +183,11 @@ avoidance_layers = 2
 avoidance_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_gxcur")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_1s8og")
 }
-autoplay = "idle"
+autoplay = "look_down"

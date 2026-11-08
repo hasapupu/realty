@@ -10,6 +10,11 @@ var player:Player
 @onready var barrier = $NPCs/Intractable18
 @onready var nav_unc = $YSort/CharacterBody2D2
 @onready var unc = $YSort/Sprite2D5
+@onready var eyelid_overlay: ColorRect = $Background/CanvasLayer/ColorRect
+@onready var line_npcs := [$YSort/Sprite2D6, $YSort/Sprite2D7, $YSort/Sprite2D8]
+var tw:Tween
+var te:Tween
+var curr_sound := 1.0
 
 func _ready():
 	if local_save.flags.has("poster") and local_save.flags["poster"]:
@@ -49,7 +54,47 @@ func move_player(x,y):
 	player.in_cuts = false
 
 func switch_uncs():
+	SoundManager.play_ambient_sound(load("res://audio/sfx/enemy_encounter.wav"))
 	unc.visible = false
-	unc.ProcessMode = PROCESS_MODE_DISABLED
+	unc.process_mode = Node.PROCESS_MODE_DISABLED
 	nav_unc.visible = true
-	nav_unc.ProcessMode = PROCESS_MODE_ALWAYS
+	nav_unc.process_mode = Node.PROCESS_MODE_ALWAYS
+
+func move_unc():
+	nav_unc.get_node("AnimationPlayer").play("walk_up")
+	nav_unc.nav_to(0,-50)
+	await nav_unc.path_done
+	nav_unc.get_node("AnimationPlayer").play("look_up")
+	await get_tree().create_timer(.5).timeout
+	SoundManager.play_sound(load("res://audio/sfx/door_open.wav"))
+	nav_unc.queue_free()
+
+func close_eyelids():
+	curr_sound = SoundManager.get_music_volume()
+	print(curr_sound)
+	tw = get_tree().create_tween()
+	te = get_tree().create_tween()
+	te.tween_method(SoundManager.set_music_volume,SoundManager.get_music_volume(),0,5)
+	tw.tween_property(eyelid_overlay, "color:a", 1, 5)
+	await tw.finished
+
+func move_people():
+	if tw.is_running():
+		await tw.finished
+	if te.is_running():
+		await te.finished
+	print("fuaaaaaaaaaaaaaaa")
+
+	for i in line_npcs:
+		i.position.x += 30
+	player.get_node("CollisionShape2D").disabled = true
+	player.position = Vector2(180, 160)
+	player.anim.play("idle_up")
+	tw = get_tree().create_tween()
+	te = get_tree().create_tween()
+	te.tween_method(SoundManager.set_music_volume,0,curr_sound,5)
+	tw.tween_property(eyelid_overlay, "color:a", 0, 5)
+	if tw.is_running():
+		await tw.finished
+	if te.is_running():
+		await te.finished

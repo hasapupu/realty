@@ -16,8 +16,10 @@ else:
 	Old guy: Why won't you let me go behind the counter and let me make one for myself?!
 	Steph: Sir, that would violate several rules of conduct, I CANNOT let you do that.
 	Old guy: Hmpf.
+	do switch_uncs()
 	Old guy: !
 	Old guy: Heh, looks like this young gentleman beat me to it.
+	do play_sfx("res://audio/sfx/menu sfx.wav")
 	if has_item("L Coffee"):
 		I give the old guy my L Coffee.
 		do remove_item("L Coffee")
@@ -25,5 +27,15 @@ else:
 		I give the old guy my Coffee.
 		do remove_item("Coffee")
 	Old guy: Thank you good sir!
+	do move_unc()
 	do set_music("res://audio/music/coffeeshop.wav")
+	do! close_eyelids()
+	Steph: Oh finally!
+	Steph: Thank you for dealing with that guy!
+	Steph: Do you want something, anyway?
+	do play_sfx("res://audio/sfx/menu sfx.wav")
+	Steph added Good Coffee to my inventory!
+	do move_people()
+	I flip to the next page in my notebook.
+	I start reading.
 => END

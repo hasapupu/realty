@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ci0tj46vhnfw4"
+path="res://.godot/imported/awkward situtation.wav-1a66010ff99c861e0b15d957a74ed340.sample"
+
+[deps]
+
+source_file="res://audio/music/awkward situtation.wav"
+dest_files=["res://.godot/imported/awkward situtation.wav-1a66010ff99c861e0b15d957a74ed340.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

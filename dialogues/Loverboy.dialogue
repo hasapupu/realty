@@ -1,16 +1,20 @@
 ~ start
 if CurrScene.has_received_cutout == false:
+	do set_music("res://audio/music/sudden love.wav")
 	Loverboy: Waaaa, that barista with the black hair has me completely FLOORED!
 	Loverboy: I am completely fascinated by her, yet I don't even know her name...
-	Loverboy: I know I should approach her, but I'm just sooo conflicted!
+	Loverboy: I know I should approach her, but I have nothing to give or say!
 	Loverboy: Someone please help!
+	do set_music("res://audio/music/coffeeshop.wav")
 else:
 	I give him the flower cutout.
+	do set_music("res://audio/music/racing heart.wav")
 	Loverboy: Waaaa, what is this???
-	Loverboy: Is this really for me?
-	Loverboy: Oh, thank you kind stranger.
+	Loverboy: What a great gift for her
+	Loverboy: Oh, thank you!
 	Loverboy: Lady of my (day)dream(s), here I come!!!!
 	do remove_item("Scissors")
 	do remove_item("Cutout")
 	do move_lover(215,84)
+	do set_music("res://audio/music/coffeeshop.wav")
 => END

@@ -1,6 +1,7 @@
 ~ start
 Interrupting a moment of true love sounds ungentlemanly, truly only the lowest form of scum would even think of doing that.
 - Interrupt
+	do set_music("res://audio/music/sudden love.wav")
 	Lovefool: I-I have something for you..
 	Emily: Really? For me?
 	Emily: Oh wait, you, yes you, I see you standing back there.
@@ -11,5 +12,6 @@ Interrupting a moment of true love sounds ungentlemanly, truly only the lowest f
 		Emily: Do what you want I don't care.
 	- Nothing:
 		Emily: THEN GO AWAY!
+	do set_music("res://audio/music/coffeeshop.wav")
 - Don't
 => END

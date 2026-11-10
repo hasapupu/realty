@@ -70,7 +70,7 @@ func move_unc():
 	nav_unc.queue_free()
 
 func close_eyelids():
-	curr_sound = SoundManager.get_music_volume()
+	curr_sound = SoundManager.get_music_volume() as float
 	print(curr_sound)
 	tw = get_tree().create_tween()
 	te = get_tree().create_tween()
@@ -83,18 +83,14 @@ func move_people():
 		await tw.finished
 	if te.is_running():
 		await te.finished
-	print("fuaaaaaaaaaaaaaaa")
-
 	for i in line_npcs:
 		i.position.x += 30
 	player.get_node("CollisionShape2D").disabled = true
-	player.position = Vector2(180, 160)
+	player.position = Vector2(184, 155)
+	player.direction = Vector2.UP
 	player.anim.play("idle_up")
+	player.camera.reset_smoothing()
 	tw = get_tree().create_tween()
-	te = get_tree().create_tween()
-	te.tween_method(SoundManager.set_music_volume,0,curr_sound,5)
 	tw.tween_property(eyelid_overlay, "color:a", 0, 5)
 	if tw.is_running():
 		await tw.finished
-	if te.is_running():
-		await te.finished

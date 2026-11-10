@@ -38,4 +38,15 @@ else:
 	do move_people()
 	I flip to the next page in my notebook.
 	I start reading.
+	do SoundManager.set_music_volume(0.4)
+	do set_music("res://audio/music/danger.wav")
+	Oh, evil one, you who were before everything, and even then opposed it!
+	Oh, eternal shadow, cast by holy light, stretching infinitely through eons!
+	Hear my word!
+	Resume your dance of chaos, bloodshed, pain and pleasure!
+	Envelope all, living and still, in your horrid beauty!
+	Hear my word!
+	AND COME TO ME!!!
+	do fade_music(3)
+	do wait(2)
 => END

@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://ygrx4347wq1c"]
+[gd_scene load_steps=68 format=4 uid="uid://ygrx4347wq1c"]
 
 [ext_resource type="Script" uid="uid://bsphwdskiix6s" path="res://scripts/cafe.gd" id="1_cs2r0"]
 [ext_resource type="Texture2D" uid="uid://ju4xkdkcdqd1" path="res://sprites/Bedroom Asset Pack 001.png" id="1_qaqna"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://tnbsavwou10i" path="res://nodes/loveparticles.tscn" id="21_rgait"]
 [ext_resource type="Script" uid="uid://bfetnocwpi4i3" path="res://scripts/overworld_room.gd" id="22_cs2r0"]
 [ext_resource type="Script" uid="uid://d2ly0kebqjv34" path="res://scripts/battle_loader.gd" id="23_gidk0"]
+[ext_resource type="Shader" uid="uid://1nt3l1jmhcgp" path="res://scripts/blackandwhite.gdshader" id="25_8gerx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a3ry3"]
 texture = ExtResource("1_qaqna")
@@ -1847,6 +1848,9 @@ agent_radius = 3.01
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ajjug"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xb318"]
+shader = ExtResource("25_8gerx")
+
 [sub_resource type="Resource" id="Resource_rgait"]
 script = ExtResource("22_cs2r0")
 instance_path = "res://nodes/cafe_backroom.tscn"
@@ -2155,6 +2159,16 @@ offset_top = -120.0
 offset_right = 160.0
 offset_bottom = 120.0
 color = Color(0, 0, 0, 0)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="Background"]
+
+[node name="ColorRect" type="ColorRect" parent="Background/CanvasLayer2"]
+material = SubResource("ShaderMaterial_xb318")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Exits" type="Node2D" parent="."]
 

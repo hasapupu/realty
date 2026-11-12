@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=4 uid="uid://ygrx4347wq1c"]
+[gd_scene load_steps=69 format=4 uid="uid://ygrx4347wq1c"]
 
 [ext_resource type="Script" uid="uid://bsphwdskiix6s" path="res://scripts/cafe.gd" id="1_cs2r0"]
 [ext_resource type="Texture2D" uid="uid://ju4xkdkcdqd1" path="res://sprites/Bedroom Asset Pack 001.png" id="1_qaqna"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ck1q12sl3xs5l" path="res://nodes/nav_unc.tscn" id="20_m5f4e"]
 [ext_resource type="PackedScene" uid="uid://5easq2avroag" path="res://nodes/exit.tscn" id="21_kkpbd"]
 [ext_resource type="PackedScene" uid="uid://tnbsavwou10i" path="res://nodes/loveparticles.tscn" id="21_rgait"]
+[ext_resource type="PackedScene" uid="uid://dxigttckif0qk" path="res://nodes/evil_one_ow.tscn" id="21_xb318"]
 [ext_resource type="Script" uid="uid://bfetnocwpi4i3" path="res://scripts/overworld_room.gd" id="22_cs2r0"]
 [ext_resource type="Script" uid="uid://d2ly0kebqjv34" path="res://scripts/battle_loader.gd" id="23_gidk0"]
 [ext_resource type="Shader" uid="uid://1nt3l1jmhcgp" path="res://scripts/blackandwhite.gdshader" id="25_8gerx"]
@@ -1945,6 +1946,11 @@ process_mode = 4
 visible = false
 position = Vector2(130, 15)
 
+[node name="Node2D" parent="YSort" instance=ExtResource("21_xb318")]
+visible = false
+y_sort_enabled = true
+position = Vector2(92, 81)
+
 [node name="NPCs" type="Node2D" parent="."]
 
 [node name="Intractable" parent="NPCs" instance=ExtResource("4_6vgot")]
@@ -2163,6 +2169,7 @@ color = Color(0, 0, 0, 0)
 [node name="CanvasLayer2" type="CanvasLayer" parent="Background"]
 
 [node name="ColorRect" type="ColorRect" parent="Background/CanvasLayer2"]
+visible = false
 material = SubResource("ShaderMaterial_xb318")
 anchors_preset = 15
 anchor_right = 1.0

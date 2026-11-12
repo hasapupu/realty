@@ -15,6 +15,7 @@ var player:Player
 var tw:Tween
 var te:Tween
 var curr_sound := 1.0
+@onready var spoopy:Node2D = $YSort/Node2D
 
 func _ready():
 	if local_save.flags.has("poster") and local_save.flags["poster"]:
@@ -94,3 +95,19 @@ func move_people():
 	tw.tween_property(eyelid_overlay, "color:a", 0, 5)
 	if tw.is_running():
 		await tw.finished
+
+func set_black_and_white(val:bool):
+	val = !val
+	$Background/CanvasLayer2/ColorRect.visible = !val
+	$Background/CPUParticles2D.visible = val
+	for i in line_npcs:
+		i.visible = val
+	loverboy.visible=val
+	$YSort/Sprite2D2.visible = val
+	$YSort/Sprite2D.visible = val
+	$YSort/Sprite2D12.visible = val
+	spoopy.global_position += (player.global_position - spoopy.global_position).normalized() * 10 
+	spoopy.visible = !val
+	
+func load_battle():
+	(get_parent().get_parent() as MainGameLoop).initiate_battle_sequence(load("res://nodes/testenemy.tscn").instantiate())

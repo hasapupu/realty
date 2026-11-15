@@ -1,8 +1,10 @@
+
 shader_type canvas_item;
-uniform sampler2D existing_screen_texture: hint_screen_texture, filter_linear_mipmap;
+
+uniform sampler2D screen_texture : hint_screen_texture, filter_nearest;
 
 void fragment() {
-	vec3 new_color = texture(existing_screen_texture, SCREEN_UV, 0.0).rgb;
-	new_color = vec3(1.0) - new_color;
-	COLOR.rgb = new_color;
+    vec4 screen = texture(screen_texture, SCREEN_UV);
+
+    COLOR = vec4(vec3(1.0) - screen.rgb, screen.a);
 }

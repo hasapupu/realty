@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://de6pth4lhbrx3"]
+[gd_scene load_steps=38 format=3 uid="uid://de6pth4lhbrx3"]
 
 [ext_resource type="Script" uid="uid://1ipdc2rptlx8" path="res://scripts/battle_scene.gd" id="1_3431j"]
 [ext_resource type="Texture2D" uid="uid://li4wknkj6rty" path="res://sprites/BlackandWhiteUI.png" id="1_pgqjp"]
@@ -24,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://r3spotkwngay" path="res://sprites/attack_1/attack_11.png" id="22_xgdl5"]
 [ext_resource type="Texture2D" uid="uid://va8t3aawi6gh" path="res://sprites/attack_1/attack_12.png" id="23_r3e6l"]
 [ext_resource type="Texture2D" uid="uid://c72qehqvwyljr" path="res://sprites/attack_1/attack_13.png" id="24_74pj4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ppnjv"]
 
 [sub_resource type="Theme" id="Theme_elstw"]
 default_font = ExtResource("3_i5xfp")
@@ -138,6 +140,7 @@ _data = {
 }
 
 [node name="Control" type="Control"]
+material = SubResource("ShaderMaterial_ppnjv")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

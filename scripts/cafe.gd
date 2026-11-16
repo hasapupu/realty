@@ -43,8 +43,10 @@ func move_lover(x,y):
 	await loverboy.path_done
 	loverboy.get_node("AnimationPlayer").play("look_up")
 	barista_npc.dialogue_path = "res://dialogues/cafe_confession.dialogue"
+	print(barista_npc.dialogue_path)
 	love_particles.visible = true
 	barrier.queue_free()
+	print(barrier)
 
 func move_player(x,y):
 	player.in_cuts = true
@@ -63,7 +65,7 @@ func switch_uncs():
 
 func move_unc():
 	nav_unc.get_node("AnimationPlayer").play("walk_up")
-	nav_unc.nav_to(0,-50)
+	nav_unc.nav_to(2,-13)
 	await nav_unc.path_done
 	nav_unc.get_node("AnimationPlayer").play("look_up")
 	await get_tree().create_timer(.5).timeout

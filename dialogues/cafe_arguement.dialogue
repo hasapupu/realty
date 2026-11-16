@@ -78,6 +78,6 @@ else:
 	do wait(1)
 	do set_black_and_white(true)
 	do SoundManager.set_music_volume(0.4)
-	do wait(3)
+	do wait(2)
 	do load_battle()
 => END

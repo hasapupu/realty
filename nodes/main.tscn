@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdji77d84p6q6"]
+[gd_scene load_steps=10 format=3 uid="uid://cdji77d84p6q6"]
 
 [ext_resource type="Script" uid="uid://dpb0dj2qugb57" path="res://scripts/main.gd" id="1_a3ry3"]
 [ext_resource type="Script" uid="uid://coyt5u851bv1r" path="res://scripts/battle_shaker.gd" id="2_a3ry3"]
-[ext_resource type="PackedScene" uid="uid://ygrx4347wq1c" path="res://nodes/cafe.tscn" id="2_ufc4x"]
+[ext_resource type="Shader" uid="uid://cx0tmi3qqd50a" path="res://shaders/chromatic-aberation.gdshader" id="4_y2wr3"]
+[ext_resource type="Shader" uid="uid://bu1dkygyelfun" path="res://shaders/tilt-shift.gdshader" id="5_y2wr3"]
 
 [sub_resource type="Gradient" id="Gradient_ufc4x"]
 colors = PackedColorArray(0, 0, 0, 1, 0.816847, 0.689698, 0.656069, 1)
@@ -20,14 +21,21 @@ adjustment_enabled = true
 adjustment_saturation = 1.1
 adjustment_color_correction = SubResource("GradientTexture1D_k8dvw")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y2wr3"]
+shader = ExtResource("4_y2wr3")
+shader_parameter/strength = 0.135
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sybi7"]
+shader = ExtResource("5_y2wr3")
+shader_parameter/limit = 0.2
+shader_parameter/blur = 2.0
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_a3ry3")
 
 [node name="CurrentMap" type="Node2D" parent="."]
 process_mode = 1
 y_sort_enabled = true
-
-[node name="Node2D" parent="CurrentMap" instance=ExtResource("2_ufc4x")]
 
 [node name="battleParent" type="CanvasLayer" parent="."]
 
@@ -45,3 +53,31 @@ metadata/_custom_type_script = "uid://coyt5u851bv1r"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="env"]
 environment = SubResource("Environment_k8dvw")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="env"]
+layer = 128
+
+[node name="ColorRect" type="ColorRect" parent="env/CanvasLayer"]
+material = SubResource("ShaderMaterial_y2wr3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect3" type="ColorRect" parent="env/CanvasLayer"]
+material = SubResource("ShaderMaterial_y2wr3")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="env/CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_sybi7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

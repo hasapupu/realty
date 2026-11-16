@@ -58,6 +58,7 @@ func load_overworld_room(new_room:OWRoom):
 	#player.camera.position_smoothing_enabled = true
 	
 func initiate_battle_sequence(enemy: Echidna):
+	SoundManager.stop_music()
 	var bs_inst: BattleSequence = load(battle_scene_path).instantiate()
 
 	bs_inst.enemy = enemy

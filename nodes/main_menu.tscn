@@ -1,0 +1,251 @@
+[gd_scene load_steps=19 format=3 uid="uid://dtogn5xws23rr"]
+
+[ext_resource type="Shader" uid="uid://osupfqssotcf" path="res://scripts/fractalbg.gdshader" id="1_arvow"]
+[ext_resource type="Script" uid="uid://cbhecn0f1khcn" path="res://nodes/main_menu.gd" id="1_mfo80"]
+[ext_resource type="Shader" uid="uid://mnw7xsthnw1q" path="res://shaders/wavy.gdshader" id="2_efjf0"]
+[ext_resource type="FontFile" uid="uid://d2i3pw07x727l" path="res://fonts/quaver.ttf" id="3_ahhaq"]
+[ext_resource type="FontFile" uid="uid://ccd8hxfb26ry2" path="res://fonts/fibberish.ttf" id="4_ahhaq"]
+[ext_resource type="Shader" uid="uid://cx0tmi3qqd50a" path="res://shaders/chromatic-aberation.gdshader" id="4_gnhuj"]
+[ext_resource type="Shader" uid="uid://djrefvoj1mpo2" path="res://shaders/vignette.gdshader" id="5_gnhuj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_urejr"]
+shader = ExtResource("1_arvow")
+shader_parameter/speed = 0.1
+shader_parameter/pixelation = 8.0
+shader_parameter/zoom = 2.0
+shader_parameter/gradient_pixelation = 0.2
+shader_parameter/background_threshold = 0.0
+shader_parameter/color_low_threshold = 0.24
+shader_parameter/color_mid_threshold = 0.48
+shader_parameter/color_low = Color(0.224304, 0.224304, 0.224304, 1)
+shader_parameter/color_mid = Color(0, 0, 0, 1)
+shader_parameter/color_high = Color(0.2484, 0.2484, 0.2484, 1)
+
+[sub_resource type="Shader" id="Shader_gnhuj"]
+code = "shader_type canvas_item;
+
+uniform float amplitude: hint_range(0.0, 1.0);
+uniform float speed: hint_range(0.0, 2.0);
+void vertex() {
+	// Called for every vertex the material is visible on.
+	float time = TIME * (30. * speed);
+	float wobbling = sin(time) * 40. * amplitude;
+	float direction = sin(time / 2.);
+	VERTEX += vec2(direction * wobbling,wobbling);
+	//VERTEX += direction;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0mh3k"]
+shader = SubResource("Shader_gnhuj")
+shader_parameter/amplitude = 0.1
+shader_parameter/speed = 0.03
+
+[sub_resource type="Shader" id="Shader_mfo80"]
+code = "shader_type canvas_item;
+
+uniform float amplitude: hint_range(0.0, 1.0);
+uniform float speed: hint_range(0.0, 2.0);
+void vertex() {
+	// Called for every vertex the material is visible on.
+	float time = TIME * (30. * speed);
+	float wobbling = sin(time) * 40. * amplitude;
+	float direction = sin(time / 2.);
+	VERTEX += vec2(direction * wobbling,wobbling);
+	//VERTEX += direction;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_twwqj"]
+shader = SubResource("Shader_mfo80")
+shader_parameter/amplitude = 0.1
+shader_parameter/speed = 0.035
+
+[sub_resource type="Shader" id="Shader_os7cv"]
+code = "shader_type canvas_item;
+
+uniform float amplitude: hint_range(0.0, 1.0);
+uniform float speed: hint_range(0.0, 2.0);
+void vertex() {
+	// Called for every vertex the material is visible on.
+	float time = TIME * (30. * speed);
+	float wobbling = sin(time) * 40. * amplitude;
+	float direction = sin(time / 2.);
+	VERTEX += vec2(direction * wobbling,wobbling);
+	//VERTEX += direction;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2sf87"]
+shader = SubResource("Shader_os7cv")
+shader_parameter/amplitude = 0.1
+shader_parameter/speed = 0.02
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uoa0k"]
+shader = ExtResource("2_efjf0")
+shader_parameter/amplitude = 0.007
+shader_parameter/speed = 0.1
+shader_parameter/frequency = 15.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_os7cv"]
+shader = ExtResource("5_gnhuj")
+shader_parameter/alpha = 0.29
+shader_parameter/inner_radius = 0.0
+shader_parameter/outer_radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mfo80"]
+shader = ExtResource("4_gnhuj")
+shader_parameter/strength = 0.15
+
+[sub_resource type="Environment" id="Environment_efjf0"]
+background_mode = 3
+tonemap_mode = 3
+glow_enabled = true
+glow_bloom = 0.1
+fog_mode = 1
+fog_density = 1.0
+adjustment_enabled = true
+adjustment_saturation = 1.2
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_mfo80")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+material = SubResource("ShaderMaterial_urejr")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = -83.0
+offset_right = 108.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("3_ahhaq")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[wave amp=50 freq=1][shake connected=1 level=3]REALTY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="Control/ColorRect"]
+material = SubResource("ShaderMaterial_0mh3k")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = 8.0
+offset_right = 32.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ahhaq")
+text = "New Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/ColorRect"]
+material = SubResource("ShaderMaterial_twwqj")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = 41.0
+offset_right = 32.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ahhaq")
+text = "Continue
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Control/ColorRect"]
+material = SubResource("ShaderMaterial_2sf87")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = 58.0
+offset_right = 32.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_ahhaq")
+text = "Quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Control/ColorRect"]
+z_index = 1
+material = SubResource("ShaderMaterial_uoa0k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Control/ColorRect"]
+z_index = 1
+position = Vector2(160, 120)
+scale = Vector2(1.6, 1.2)
+copy_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="Control/ColorRect"]
+z_index = 2
+material = SubResource("ShaderMaterial_os7cv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Control/ColorRect"]
+z_index = 2
+position = Vector2(159.5, 120)
+scale = Vector2(1.595, 1.2)
+copy_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Control/ColorRect"]
+z_index = 3
+material = SubResource("ShaderMaterial_mfo80")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_efjf0")

@@ -11,10 +11,7 @@ const battle_scene_path := "res://nodes/battle_scene.tscn"
 @onready var battle_parent : CanvasLayer = $battleParent
 
 func _ready():
-	if ResourceLoader.exists(save_path) == false:
-		print(save_path)
-		ResourceSaver.save(MainSave.new(),save_path)
-	var savefile:MainSave = ResourceLoader.load(save_path)
+	var savefile:MainSave = MainSave.new()
 	#print(MainSave.new())
 	def_scene_path = savefile.scene_path
 	def_mus_path = savefile.mus_path

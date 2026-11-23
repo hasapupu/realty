@@ -2222,6 +2222,7 @@ texture = SubResource("GradientTexture1D_ajjug")
 
 [node name="BattleLoader2" type="Area2D" parent="Background"]
 script = ExtResource("23_gidk0")
+enemy_path = "res://nodes/tutorial_enemy.tscn"
 metadata/_custom_type_script = "uid://d2ly0kebqjv34"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Background/BattleLoader2"]

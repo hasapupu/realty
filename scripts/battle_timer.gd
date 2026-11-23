@@ -3,11 +3,9 @@ class_name BattleTimer extends Timer
 var bs :BattleSequence
 var player_index:= 0
 var e_attack_index:= 0
-var e_fakeout_index:= 0
 var curr_time:float =0
 signal player_note(duration:float)
 signal enemy_attack
-signal enemy_fakeout
 
 func _process(delta: float) -> void:
 	curr_time = wait_time-time_left
@@ -22,11 +20,8 @@ func _process(delta: float) -> void:
 			print(bs.enemy_attack_notes[e_attack_index])
 			enemy_attack.emit()
 			e_attack_index += 1
-		if bs.enemy_fakeout_notes.size() > 0 and bs.enemy_fakeout_notes[e_fakeout_index] <= curr_time:
-			enemy_fakeout.emit()
-			e_fakeout_index += 1
+
 
 func _on_timeout() -> void:
 	player_index = 0
 	e_attack_index = 0
-	e_fakeout_index = 0

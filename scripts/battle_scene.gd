@@ -11,7 +11,7 @@ var selected_i := 0
 var inventory : Array
 var cursor_init_pos := Vector2(298,155)
 var cursor_final_pos := Vector2(25,155)
-var cursors := []
+var cursor_inst
 var cursor_path := "res://nodes/cursor.tscn"
 var difficulty := 30 #0 es 170 kozti szam, minel kisebb, annal nehezebb
 var c_active := false:
@@ -50,11 +50,8 @@ var hint_dict:={"fight":"Attack enemy","skill":"Attempt to convince enemy","item
 signal player_died
 var enemy_attack_notes :=[]
 var player_notes :=[]
-var enemy_fakeout_notes := []
 @onready var note_timer : BattleTimer = $Timer
 var cursor : Control
-var c_tweens := []
-var c_index := 0
 var button_sfx_path := "res://audio/sfx/menu sfx.wav"
 @export var intro_timeout_length := .5
 @onready var hit_marker : PackedScene = preload("res://nodes/hit_marker.tscn")
@@ -64,6 +61,9 @@ var button_sfx_path := "res://audio/sfx/menu sfx.wav"
 var enemy_pos = Vector2(100,30) #magic number bc I hate UI coords
 @onready var attack_shields := [$TextureRect,$TextureRect2]
 @onready var enemy_attack_vfx_anim : AnimationPlayer = $TextureRect3/vfx_anim
+var player_done:= false
+var possible_note_positions := []
+var note_pos_i := 0
 
 func _ready():
 	$TextureRect3.texture = null
@@ -117,8 +117,7 @@ func _ready():
 	$ColorRect.visible = true
 	note_timer.bs = self
 	note_timer.wait_time = audio.stream.get_length()
-	note_timer.enemy_attack.connect(enemy.attack)
-	note_timer.enemy_attack.connect(enemy.windup)
+	note_timer.enemy_attack.connect(new_bar)
 	note_timer.start()
 	enemy_terminal.queue_write("* (" + enemy.enemy_name + [" showed up!", " appeared!"," attacks!" ].pick_random() + ")")
 	switch_panel(["Fight","Skill","Item","Block"])
@@ -158,64 +157,42 @@ func switch_selection(value:int):
 
 func start_qte(duration:float):
 	var temp_c = load(cursor_path).instantiate()
-	cursors.append(temp_c)
+	cursor = temp_c
 	$Control.add_child(temp_c)
 	temp_c.position = cursor_init_pos
-	var temp_c_tween : Tween = get_tree().create_tween()
-	temp_c_tween.tween_property(temp_c,"position",cursor_final_pos,input_rate)
-	temp_c_tween.finished.connect(stop_c_tween)
-	c_tweens.append(temp_c_tween)
+
 	
 func _process(delta):
-	if c_index < cursors.size():
-		cursor = cursors[c_index]
-		if cursor.visible:
-			if Input.is_action_just_pressed("ui_left"):
-				c_tweens[c_index].stop()
-				cursor.visible = false
-				if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
+	if player_done == false:
+		if Input.is_action_just_pressed("ui_left"):
+			player_done = true
+			SoundManager.play_sound(load(button_sfx_path))
+			switch_selection(selected_i - 1)
+			spawn_hit_marker(but_list[selected_i].get_text(),cursor.position)
+			#print(cursor.position.distance_to(cursor_final_pos))
+		elif Input.is_action_just_pressed("ui_right"):
+			player_done = true
+			SoundManager.play_sound(load(button_sfx_path))
+			switch_selection(selected_i + 1)
+			spawn_hit_marker(but_list[selected_i].get_text(), cursor.position)
+		elif Input.is_action_just_pressed("ui_accept"):
+			player_done = true
+			if !player_attacking:
+				spawn_hit_marker(but_list[selected_i].get_text(), cursor.position)
+				if def_responses.has(but_list[selected_i].get_text().to_lower()):
 					SoundManager.play_sound(load(button_sfx_path))
-					switch_selection(selected_i - 1)
-					spawn_hit_marker(but_list[selected_i].get_text(),cursor.position)
-				else:
-					spawn_hit_marker("miss",cursor.position)
-				#print(cursor.position.distance_to(cursor_final_pos))
-				c_index += 1
-			elif Input.is_action_just_pressed("ui_right"):
-				c_tweens[c_index].stop()
-				cursor.visible = false
-				if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
-					#spawn_hit_marker("Right")
+					(def_responses[but_list[selected_i].get_text().to_lower()] as Callable).call()
+				elif enemy.p_act_dict.has(but_list[selected_i].get_text().to_lower()):
+						#print("process")
 					SoundManager.play_sound(load(button_sfx_path))
-					switch_selection(selected_i + 1)
-					spawn_hit_marker(but_list[selected_i].get_text(), cursor.position)
-				else:
-					spawn_hit_marker("miss",cursor.position)
-				#print(cursor.position.distance_to(cursor_final_pos))
-				c_index += 1
-			elif Input.is_action_just_pressed("ui_accept"):
-				c_tweens[c_index].stop()
-				cursor.visible = false
-				if !player_attacking:
-					if(cursor.position.distance_to(cursor_final_pos) <= difficulty):
-						spawn_hit_marker(but_list[selected_i].get_text(), cursor.position)
-						if def_responses.has(but_list[selected_i].get_text().to_lower()):
-							SoundManager.play_sound(load(button_sfx_path))
-							(def_responses[but_list[selected_i].get_text().to_lower()] as Callable).call()
-						elif enemy.p_act_dict.has(but_list[selected_i].get_text().to_lower()):
-							#print("process")
-							SoundManager.play_sound(load(button_sfx_path))
-							(enemy.p_act_dict[but_list[selected_i].get_text().to_lower()] as Callable).call()
-						c_index += 1
-					else:
-						spawn_hit_marker("miss",cursor.position)
-				else:
-					player_attacking = false
-					damage_enemy(170 - (cursor.position.distance_to(cursor_final_pos)))
-					spawn_hit_marker(str(int(170 - (cursor.position.distance_to(cursor_final_pos)))), enemy_pos) #HARDCODED MAGIC NUMBERS YAAAAAYYYYY
-					switch_panel(["Fight","Skill","Item","Block"])
-					c_index += 1
-	
+					(enemy.p_act_dict[but_list[selected_i].get_text().to_lower()] as Callable).call()
+			else:
+				player_attacking = false
+				damage_enemy(170)
+				spawn_hit_marker(str(int(170)), enemy_pos) #HARDCODED MAGIC NUMBERS YAAAAAYYYYY
+				switch_panel(["Fight","Skill","Item","Block"])
+
+
 func fight():
 	switch_panel([enemy.enemy_name])
 	
@@ -228,8 +205,6 @@ func attack():
 func block():
 	player_blocking = true
 	switch_panel(["Fight","Skill","Item","Block"])
-	SoundManager.play_sound(load("res://audio/sfx/armorup.wav"))
-	show_shield_icon(player_blocking)
 	
 func damage_player(bullshit:int = 1, amount:int = 100):
 	#print("amount")
@@ -277,8 +252,7 @@ func kill_player():
 	c_active = false
 	audio.stop()
 	note_timer.paused = true
-	for i:Tween in c_tweens:
-		i.stop()
+
 	#await get_tree().create_timer(1)
 	fadeout_anim.play("fade_out")
 	await  get_tree().process_frame
@@ -324,14 +298,8 @@ func extract_notes():
 		#print(i["note"])
 		if i["note"] == 98:
 			player_notes.append(i["time"] - input_rate)
-		elif i["note"] == 99:
+		elif i["note"] == 100 :
 			enemy_attack_notes.append(i["time"] - input_rate)
-		elif i["note"] == 100:
-			enemy_fakeout_notes.append(i["time"] - input_rate)
-
-func stop_c_tween():
-	cursor.visible = false
-	c_index += 1
 	
 func spawn_hit_marker(label_text:String, m_pos: Vector2 = Vector2.ZERO):
 	var temp_marker : HitMarker = hit_marker.instantiate()
@@ -371,3 +339,30 @@ func play_attack_anim():
 	await get_tree().create_timer(.05).timeout
 	for i in range(attack_shields.size()):
 		attack_shields[i].position = a_shields_def_pos[i]
+		
+func new_bar():
+	player_done = false
+	for i in range(difficulty):
+		await get_tree().process_frame
+	if !player_blocking:
+		damage_player()
+	else:
+		show_shield_icon(true)
+		
+	possible_note_positions.clear()
+	var i = note_timer.player_index
+	var div_c := 1
+	while player_notes[i] < enemy_attack_notes[note_timer.e_attack_index]:
+		div_c += 1
+		i += 1
+	for j in range(div_c):
+		possible_note_positions.append((cursor_init_pos - cursor_final_pos)*(j/div_c))
+	note_pos_i = 0
+	cursor_inst.position = possible_note_positions[note_pos_i]
+
+
+func on_note():
+	note_pos_i += 1
+	cursor_inst.position = possible_note_positions[note_pos_i]
+	player_done = false
+	player_blocking = false

@@ -340,8 +340,6 @@ func play_attack_anim():
 		
 func new_bar():
 	player_done = false
-	for i in range(difficulty):
-		await get_tree().process_frame
 	if !player_blocking:
 		damage_player(1,1)
 	else:

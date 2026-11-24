@@ -4,7 +4,7 @@ var bs :BattleSequence
 var player_index:= 0
 var e_attack_index:= 0
 var curr_time:float =0
-signal player_note(duration:float)
+signal player_note()
 signal enemy_attack
 
 func _process(delta: float) -> void:
@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 				#print(bs.player_notes[player_index + 1])
 				#print(bs.player_notes[player_index])
 				#print(curr_time)
-			player_note.emit(bs.enemy.input_rate)
+			player_note.emit()
 			player_index += 1
 		if bs.enemy_attack_notes.size() > 0 and bs.enemy_attack_notes[e_attack_index] <= curr_time:
 			print(bs.enemy_attack_notes[e_attack_index])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://de6pth4lhbrx3"]
+[gd_scene load_steps=39 format=3 uid="uid://de6pth4lhbrx3"]
 
 [ext_resource type="Script" uid="uid://1ipdc2rptlx8" path="res://scripts/battle_scene.gd" id="1_3431j"]
 [ext_resource type="Texture2D" uid="uid://li4wknkj6rty" path="res://sprites/BlackandWhiteUI.png" id="1_pgqjp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dos3qhffr4v0a" path="res://addons/rhythm_notifier-6a45663809d9d6e8bfeaad0000fd19344d2dfbfe/addons/rhythm_notifier/rhythm_notifier.gd" id="4_elstw"]
 [ext_resource type="Shader" uid="uid://osupfqssotcf" path="res://scripts/fractalbg.gdshader" id="4_pvnho"]
 [ext_resource type="Shader" uid="uid://brkktr48cptd5" path="res://scripts/invert.gdshader" id="5_ncinl"]
+[ext_resource type="PackedScene" uid="uid://b2u6c847fqq1e" path="res://nodes/cursor.tscn" id="7_gvrxx"]
 [ext_resource type="FontFile" uid="uid://d2i3pw07x727l" path="res://fonts/quaver.ttf" id="7_h847m"]
 [ext_resource type="Script" uid="uid://duc2q76og8doj" path="res://scripts/battle_terminal.gd" id="8_c8vew"]
 [ext_resource type="Script" uid="uid://irprssrpm5uk" path="res://scripts/battle_timer.gd" id="9_qk6qr"]
@@ -169,7 +170,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-visible = false
 z_index = 5
 layout_mode = 1
 anchors_preset = 8
@@ -206,7 +206,6 @@ theme_override_constants/v_separation = 8
 columns = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 z_index = 1
 material = SubResource("ShaderMaterial_h847m")
 layout_mode = 1
@@ -331,6 +330,13 @@ theme_override_fonts/font = ExtResource("3_i5xfp")
 theme_override_font_sizes/font_size = 16
 text = "adsefasdf"
 
+[node name="Label" parent="Control" instance=ExtResource("7_gvrxx")]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 155.0
+offset_right = 231.0
+offset_bottom = 178.0
+
 [node name="ColorRect3" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -420,7 +426,6 @@ text = "HP:"
 vertical_alignment = 1
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="."]
-visible = false
 z_index = 10
 layout_mode = 1
 anchors_preset = -1
@@ -476,7 +481,6 @@ libraries = {
 script = ExtResource("9_qk6qr")
 
 [node name="ColorRect6" type="TextureRect" parent="."]
-visible = false
 z_index = 99
 layout_mode = 1
 anchors_preset = 8

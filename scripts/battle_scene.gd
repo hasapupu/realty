@@ -9,9 +9,9 @@ var def_responses:= {"fight":fight,"skill":show_skills,"item":show_inventory,"bl
 var but_list:Array
 var selected_i := 0
 var inventory : Array
-var cursor_init_pos := Vector2(298,155)
+var cursor_init_pos := Vector2(191,155)
 var cursor_final_pos := Vector2(25,155)
-var cursor_inst:Control
+@onready var cursor_inst:Control = $Control/Label
 var cursor_path := "res://nodes/cursor.tscn"
 var difficulty := 30 #0 es 170 kozti szam, minel kisebb, annal nehezebb
 var c_active := false:
@@ -117,6 +117,7 @@ func _ready():
 	note_timer.wait_time = audio.stream.get_length()
 	note_timer.enemy_attack.connect(new_bar)
 	note_timer.player_note.connect(on_note)
+	start_bar()
 	note_timer.start()
 	enemy_terminal.queue_write("* (" + enemy.enemy_name + [" showed up!", " appeared!"," attacks!" ].pick_random() + ")")
 	switch_panel(["Fight","Skill","Item","Block"])
@@ -155,10 +156,8 @@ func switch_selection(value:int):
 		hint_terminal.text = ""
 
 func start_qte():
-	var temp_c = load(cursor_path).instantiate()
-	cursor_inst = temp_c
 	cursor_inst.position = cursor_init_pos
-	$Control.add_child(cursor_inst)
+
 	
 func _process(delta):
 	if player_done == false:
@@ -314,7 +313,8 @@ func show_shield_icon(shield_up:bool):
 	
 func play_attack_blink():
 	var blink_tween : Tween = get_tree().create_tween()
-	blink_tween.tween_property((enemy.get_node("Sprite2D") as TextureRect).material, "shader_parameter/time",1,1.0)
+
+	blink_tween.tween_property((enemy.get_node("TextureRect") as TextureRect).material, "shader_parameter/time",1,1.0)
 	await blink_tween.finished
 	((enemy.get_node("Sprite2D") as TextureRect).material as ShaderMaterial).set_shader_parameter("time",0.0)
 
@@ -346,20 +346,31 @@ func new_bar():
 		damage_player(1,1)
 	else:
 		show_shield_icon(true)
-		
+		player_blocking = false
+	start_bar()
+
+func start_bar():
 	possible_note_positions.clear()
 	var i = note_timer.player_index
 	var div_c := 1
-	while player_notes[i] < enemy_attack_notes[note_timer.e_attack_index]:
+	while (
+		i < player_notes.size()
+		and note_timer.e_attack_index < enemy_attack_notes.size()
+		and player_notes[i] < enemy_attack_notes[note_timer.e_attack_index]
+	):
 		div_c += 1
 		i += 1
 	for j in range(div_c):
-		possible_note_positions.append((cursor_init_pos - cursor_final_pos)*(j/div_c))
+		var progress := float(j) / float(div_c)
+		possible_note_positions.append(
+		cursor_init_pos.lerp(cursor_final_pos, progress)
+		)
 	note_pos_i = 0
 	cursor_inst.position = possible_note_positions[note_pos_i]
-
+	
 func on_note():
 	note_pos_i += 1
 	cursor_inst.position = possible_note_positions[note_pos_i]
+	print(cursor_inst.position)
 	player_done = false
 	player_blocking = false

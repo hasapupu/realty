@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b88rd6ra46pmo"]
+
+[ext_resource type="FontFile" uid="uid://d2i3pw07x727l" path="res://fonts/quaver.ttf" id="1_8yrdu"]
+
+[node name="Label" type="Label"]
+z_index = 100
+offset_top = -4.0
+offset_right = 40.0
+offset_bottom = 19.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_8yrdu")
+theme_override_font_sizes/font_size = 8
+text = "|"

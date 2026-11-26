@@ -62,6 +62,8 @@ var enemy_pos = Vector2(100,30) #magic number bc I hate UI coords
 var player_done:= false
 var possible_note_positions := []
 var note_pos_i := 0
+@onready var battle_divider_path:String = "res://nodes/battle_divider.tscn"
+var dividers := []
 
 func _ready():
 	$TextureRect3.texture = null
@@ -120,7 +122,7 @@ func _ready():
 	start_bar()
 	note_timer.start()
 	enemy_terminal.queue_write("* (" + enemy.enemy_name + [" showed up!", " appeared!"," attacks!" ].pick_random() + ")")
-	switch_panel(["Fight","Skill","Item","Block"])
+	reset_panel()
 	audio.play()
 	#enemy_terminal.queue_write("Test dialogue.")
 
@@ -140,6 +142,9 @@ func switch_panel(new_butts:Array):
 		add_butt(i)
 	switch_selection(0)
 
+func reset_panel():
+	switch_panel(["Block","Skill","Item","Fight"])
+
 func switch_selection(value:int):
 	for i:BattleButt in but_list:
 		i.set_selected(false)
@@ -157,7 +162,6 @@ func switch_selection(value:int):
 
 func start_qte():
 	cursor_inst.position = cursor_init_pos
-
 	
 func _process(delta):
 	if player_done == false:
@@ -187,7 +191,7 @@ func _process(delta):
 				player_attacking = false
 				damage_enemy(170)
 				spawn_hit_marker(str(int(170)), enemy_pos) #HARDCODED MAGIC NUMBERS YAAAAAYYYYY
-				switch_panel(["Fight","Skill","Item","Block"])
+				reset_panel()
 
 
 func fight():
@@ -201,7 +205,7 @@ func attack():
 	
 func block():
 	player_blocking = true
-	switch_panel(["Fight","Skill","Item","Block"])
+	reset_panel()
 	
 func damage_player(bullshit:int = 1, amount:int = 100):
 	#print("amount")
@@ -232,7 +236,7 @@ func test_item():
 		if i.name == "Test Item":
 			inventory.erase(i)
 			break
-	switch_panel(["Fight","Skill","Item","Block"])
+	reset_panel()
 	
 func damage_enemy(amount:int):
 	SoundManager.play_sound(load("res://audio/sfx/player_attack.wav"))
@@ -349,26 +353,50 @@ func new_bar():
 
 func start_bar():
 	possible_note_positions.clear()
+
+	for i in dividers:
+		i.queue_free()
+	dividers.clear()
+
 	var i = note_timer.player_index
 	var div_c := 1
+
+	print("========== NEW BAR ==========")
+	print("Player index: ", i)
+	print("Enemy index: ", note_timer.e_attack_index)
+	print("Player notes remaining: ", player_notes.slice(i))
+	print("Enemy notes: ", enemy_attack_notes)
+
 	while (
 		i < player_notes.size()
 		and note_timer.e_attack_index < enemy_attack_notes.size()
 		and player_notes[i] < enemy_attack_notes[note_timer.e_attack_index]
 	):
+		print("Found note: ", player_notes[i])
 		div_c += 1
 		i += 1
+
+	print("Final div_c: ", div_c)
+
 	for j in range(div_c):
 		var progress := float(j) / float(div_c)
 		possible_note_positions.append(
-		cursor_init_pos.lerp(cursor_final_pos, progress)
+			cursor_init_pos.lerp(cursor_final_pos, progress)
 		)
+		spawn_divider(possible_note_positions[j] - Vector2(4, 0))
+
 	note_pos_i = 0
 	cursor_inst.position = possible_note_positions[note_pos_i]
 	
 func on_note():
+	print(possible_note_positions)
 	note_pos_i += 1
 	cursor_inst.position = possible_note_positions[note_pos_i]
-	print(cursor_inst.position)
 	player_done = false
 	player_blocking = false
+
+func spawn_divider(at:Vector2):
+	var d_inst = load(battle_divider_path).instantiate()
+	d_inst.position = at
+	$Control.add_child(d_inst)
+	dividers.append(d_inst)
